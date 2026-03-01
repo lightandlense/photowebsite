@@ -6,40 +6,120 @@
       "label": "Fashion",
       "folder": "images/fashion",
       "clotheslineIndex": 0,
-      "photoCount": 0,
-      "photos": []
+      "photoCount": 10,
+      "photos": [
+        "DSC1858-Edit.jpg",
+        "DSC5137-min.jpg",
+        "DSC5155-min.jpg",
+        "DSC5240-min.jpg",
+        "DSC7022.jpg",
+        "DSC9409-min.jpg",
+        "DSC9639-min.jpg",
+        "DSC9649-min.jpg",
+        "high-fashion-gobo-Photography.jpg",
+        "test-sample.jpg"
+      ]
     },
     {
       "id": "beauty",
       "label": "Beauty",
       "folder": "images/beauty",
       "clotheslineIndex": 1,
-      "photoCount": 0,
-      "photos": []
+      "photoCount": 14,
+      "photos": [
+        "DSC5071-Edit-min-1.jpg",
+        "DSC5157-Edit-min.jpg",
+        "DSC5235-Edit-min.jpg",
+        "DSC5273-Edit-min.jpg",
+        "DSC5447-Edit-min.jpg",
+        "DSC5507-Edit-min.jpg",
+        "DSC5698-Edit-min.jpg",
+        "DSC5705-Edit-min.jpg",
+        "DSC5720-Edit-min.jpg",
+        "DSC5736-Edit-min.jpg",
+        "DSC5793-Edit-min.jpg",
+        "DSC5819-Edit-min.jpg",
+        "DSC5940-Edit-min.jpg",
+        "DSC5948-Edit-min.jpg"
+      ]
     },
     {
       "id": "light-painting",
       "label": "Light Painting",
       "folder": "images/light-painting",
       "clotheslineIndex": 2,
-      "photoCount": 0,
-      "photos": []
+      "photoCount": 24,
+      "photos": [
+        "DJI_0013-scaled.jpg",
+        "DSC0060.jpg",
+        "DSC0694.jpg",
+        "DSC1740-Copy.jpg",
+        "DSC3028-min.jpg",
+        "DSC4457-min.jpg",
+        "DSC4604-Edit.jpg",
+        "DSC4691-Edit-min.jpg",
+        "DSC6119-Edit-min-2.jpg",
+        "DSC6250-Edit-min-2.jpg",
+        "DSC6376-Edit-Edit-2.jpg",
+        "DSC6683editfinalsmall.jpg",
+        "DSC6857-Edit-scaled.jpg",
+        "DSC9913-3finalfinal-min.jpg",
+        "Feather-Crown-Model-Example.jpg",
+        "PA060031-Edit-min.jpg",
+        "Russell-Klimas-Lightpainting-min.jpg",
+        "Russell-Klimas-Submission-1-scaled.jpg",
+        "RussellKlimasSubmission2small-min.jpg",
+        "Sydney-Laser-Band.gif",
+        "antsonamelonfiberopticwhiprainbow.jpg",
+        "hannahrainbowspandexlightpainting.jpg",
+        "lightpaintingbrushesportraitlightandfiberopticwhip.jpg",
+        "longribbontubeshape-light-painting.jpg"
+      ]
     },
     {
       "id": "drone",
       "label": "Drone",
       "folder": "images/drone",
       "clotheslineIndex": 3,
-      "photoCount": 0,
-      "photos": []
+      "photoCount": 14,
+      "photos": [
+        "Balance-Steamboat-Garden-of-the-Gods-drone-light-painting.jpg",
+        "DSC5763-Edit-scaled.jpg",
+        "Face-On-Balance-Steamboat-Garden-of-the-Gods-drone-light-painting.jpg",
+        "balance-rock-long-scaled.jpg",
+        "blackpantherverticallightpainting.jpg",
+        "dronelightpaintinghorizontalcriticalrole.jpg",
+        "ezgif.com-gif-maker-4.gif",
+        "ezgif.com-gif-maker-6.gif",
+        "ezgif.com-gif-maker.gif",
+        "ezgif.com-video-to-gif51.gif",
+        "lumecubevideodronelightpainting.gif",
+        "stopmotiondronelightpaintinghorse.gif",
+        "tower-of-babel.jpg",
+        "triforce3drotationdronelightpainting.gif"
+      ]
     },
     {
-      "id": "video",
-      "label": "Video",
-      "folder": "images/video",
+      "id": "gels",
+      "label": "Gels",
+      "folder": "images/gels",
       "clotheslineIndex": 4,
-      "photoCount": 0,
-      "photos": []
+      "photoCount": 13,
+      "photos": [
+        "DSC6127-Edit.jpg",
+        "DSC6179.jpg",
+        "DSC7453-Edit.jpg",
+        "DSC7483.jpg",
+        "DSC7501-Edit.jpg",
+        "DSC7557.jpg",
+        "DSC7601-Edit.jpg",
+        "DSC7606-Edit.jpg",
+        "DSC7700-min.jpg",
+        "DSC7722-Edit-min.jpg",
+        "fashion-photography-gels-1.jpg",
+        "fashion-photography-gels-2.jpg",
+        "fashion-photography-gels-3.jpg"
+      ]
     }
   ]
 }

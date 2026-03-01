@@ -1,11 +1,11 @@
 /**
  * transition.js — Forward and reverse transition controller
  *
- * Forward: hand reaches up (open), grabs photo (swap to grab), photo scales
- * to fill viewport, hand fades, darkroom dissolves, gallery appears.
+ * Forward: photo detaches from clothesline, scales to fill viewport,
+ * darkroom dissolves, gallery appears.
  *
  * Reverse: separate timeline — gallery fades, photo shrinks back, darkroom
- * returns. No hand replay. No timeline.reverse() (avoids GSAP callback bugs).
+ * returns. No timeline.reverse() (avoids GSAP callback bugs).
  *
  * GSAP is a CDN global — do NOT import it.
  *
@@ -14,6 +14,7 @@
 
 import { store } from './store.js';
 import { navigateTo } from './router.js';
+import { buildFilmstrip, teardownFilmstrip } from './gallery.js';
 
 /** Track the currently active forward timeline so we can kill it */
 let forwardTl = null;
@@ -40,7 +41,7 @@ function getNeighborPhotos(photoEl) {
 }
 
 /**
- * Starts the forward transition: hand reaches up, grabs the photo,
+ * Starts the forward transition: photo detaches from clothesline,
  * photo scales to fill viewport, darkroom dissolves, gallery fades in.
  */
 export function startForward(genre, photoEl) {
@@ -71,9 +72,6 @@ export function startForward(genre, photoEl) {
   activePhotoEl = photoEl;
 
   // DOM references
-  const handEl = document.getElementById('hand-container');
-  const handOpen = document.getElementById('hand-open');
-  const handGrab = document.getElementById('hand-grab');
   const pinEl = photoEl.querySelector('.clothesline__pin');
   const darkroomEl = document.getElementById('darkroom');
   const galleryEl = document.getElementById('gallery');
@@ -88,39 +86,17 @@ export function startForward(genre, photoEl) {
   gsap.set(galleryEl, { display: 'flex', opacity: 0 });
   gsap.set(darkroomEl, { display: 'block', opacity: 1 });
 
-  // Hand positioning — the pinch point (thumb meets index finger) is at roughly
-  // 35% from left and 15% from top of the hand image (from grasp reference).
-  // We want the pinch to land on the top-left area of the photo.
-  const handSize = 420;
-  const pinchOffsetX = handSize * 0.35; // where the pinch is horizontally in the hand image
-  const pinchOffsetY = handSize * 0.15; // where the pinch is vertically in the hand image
-  // Target: pinch meets the top-left corner area of the photo
-  const photoGrabX = rect.left + rect.width * 0.25; // grab point on the photo (left quarter)
-  const photoGrabY = rect.top; // top edge of photo
-  const handTargetX = photoGrabX - pinchOffsetX;
-  const handTargetY = photoGrabY - pinchOffsetY;
-
-  // Reset hand state — starts below viewport
-  gsap.set(handEl, { display: 'block', left: handTargetX, top: vh + 50, opacity: 1 });
-  gsap.set(handOpen, { opacity: 1 });
-  gsap.set(handGrab, { opacity: 0 });
-
   // Kill any previous timeline
   if (forwardTl) forwardTl.kill();
 
   forwardTl = gsap.timeline();
 
-  // --- ACT 1: HAND REACHES UP AND GRABS (~0–1.1s) ---
+  // --- ACT 1: PHOTO DETACHES (~0–0.6s) ---
 
   forwardTl
-    // Hand rises from below to the photo
-    .to(handEl, { top: handTargetY, duration: 0.8, ease: 'power2.out' }, 0)
-    // At 0.6s — swap open hand to grab hand
-    .to(handOpen, { opacity: 0, duration: 0.15 }, 0.6)
-    .to(handGrab, { opacity: 1, duration: 0.15 }, 0.6)
     // Clothespin releases
-    .to(pinEl, { y: -8, opacity: 0, duration: 0.3, ease: 'power2.in' }, 0.65)
-    // Neighbors sway
+    .to(pinEl, { y: -8, opacity: 0, duration: 0.3, ease: 'power2.in' }, 0)
+    // Neighbors sway from the release
     .to(
       getNeighborPhotos(photoEl),
       {
@@ -130,16 +106,22 @@ export function startForward(genre, photoEl) {
         yoyo: true,
         repeat: 1,
       },
-      0.7
+      0.1
     )
     // Wire bounces
     .to(
       photoEl.closest('.clothesline')?.querySelector('.clothesline__wire'),
       { y: 2, duration: 0.2, ease: 'power2.out', yoyo: true, repeat: 1 },
-      0.7
+      0.1
     );
 
-  // --- ACT 2: PHOTO SCALES UP, HAND FADES (~1.0–2.2s) ---
+  // --- ACT 2: PHOTO SCALES UP (~0.3–1.5s) ---
+
+  // Allow photo to visually escape the darkroom's overflow:hidden
+  darkroomEl.style.overflow = 'visible';
+  // Elevate the photo above all darkroom layers
+  photoEl.style.zIndex = '50';
+  photoEl.closest('.clothesline').style.zIndex = '100';
 
   forwardTl
     .to(
@@ -152,36 +134,37 @@ export function startForward(genre, photoEl) {
         duration: 1.2,
         ease: 'power2.inOut',
       },
-      1.0
+      0.3
     )
-    // Hand fades as photo takes over
-    .to(handEl, { opacity: 0, duration: 0.4, ease: 'power2.in' }, 1.3)
-    .set(handEl, { display: 'none' }, 1.7)
     // Darkroom fades behind
-    .to(darkroomEl, { opacity: 0, duration: 0.8, ease: 'power2.in' }, 1.4);
+    .to(darkroomEl, { opacity: 0, duration: 0.8, ease: 'power2.in' }, 0.7);
 
-  // --- ACT 3: GALLERY DISSOLVE IN (~2.0–2.3s) ---
+  // --- ACT 3: GALLERY DISSOLVE IN (~1.3–1.6s) ---
 
   forwardTl
-    .to(galleryEl, { opacity: 1, duration: 0.3, ease: 'none' }, 2.0)
-    .set(darkroomEl, { display: 'none' }, 2.3)
+    .to(galleryEl, { opacity: 1, duration: 0.3, ease: 'none' }, 1.3)
+    .set(darkroomEl, { display: 'none' }, 1.6)
     // Final: mark complete
     .call(() => {
       inGallery = true;
       photoEl.classList.add('clothesline__photo--empty');
       store.set({ transitionInProgress: false });
+      buildFilmstrip(genre);
       navigateTo('/gallery/' + genre);
-    }, null, 2.3);
+    }, null, 1.6);
 }
 
 /**
- * Reverse transition — separate timeline, no hand.
+ * Reverse transition — separate timeline.
  * Gallery fades out, photo shrinks back to clothesline, darkroom returns.
  */
 export function startReverse() {
   if (!inGallery || !activePhotoEl || store.get().transitionInProgress) return;
 
   store.set({ transitionInProgress: true });
+
+  // Teardown filmstrip before reverse animation
+  teardownFilmstrip();
 
   // Kill forward timeline entirely — we're building a new reverse
   if (forwardTl) {
@@ -191,28 +174,45 @@ export function startReverse() {
 
   const darkroomEl = document.getElementById('darkroom');
   const galleryEl = document.getElementById('gallery');
-  const handEl = document.getElementById('hand-container');
-
-  // Ensure hand is hidden
-  gsap.set(handEl, { display: 'none' });
-
   // Prep darkroom to fade back in
   gsap.set(darkroomEl, { display: 'block', opacity: 0 });
 
   // Store ref before async timeline completes
   const photoToRestore = activePhotoEl;
 
+  // Grab child refs before timeline starts
+  const pinToRestore = photoToRestore.querySelector('.clothesline__pin');
+  const imgToRestore = photoToRestore.querySelector('.clothesline__image');
+
+  // Prep: remove empty class now so we can animate children back in.
+  // Set image and pin to opacity 0 / visibility visible so they can fade in.
+  photoToRestore.classList.remove('clothesline__photo--empty');
+  if (imgToRestore) {
+    gsap.set(imgToRestore, { opacity: 0, visibility: 'visible' });
+  }
+  if (pinToRestore) {
+    gsap.set(pinToRestore, { opacity: 0, visibility: 'visible' });
+  }
+
   const reverseTl = gsap.timeline({
     onComplete: () => {
-      // Restore photo — remove empty class and clear ALL inline styles
+      // Final cleanup — clear only GSAP-touched props, preserve background gradient
       if (photoToRestore) {
-        photoToRestore.classList.remove('clothesline__photo--empty');
-        gsap.set(photoToRestore, { clearProps: 'all' });
-        // Restore children too
-        const pinEl = photoToRestore.querySelector('.clothesline__pin');
-        if (pinEl) gsap.set(pinEl, { clearProps: 'all' });
-        const imgEl = photoToRestore.querySelector('.clothesline__image');
-        if (imgEl) gsap.set(imgEl, { clearProps: 'all' });
+        gsap.set(photoToRestore, { clearProps: 'scale,x,y,rotate,transformOrigin,transform' });
+        photoToRestore.style.zIndex = '';
+        const clothesline = photoToRestore.closest('.clothesline');
+        if (clothesline) clothesline.style.zIndex = '';
+        darkroomEl.style.overflow = '';
+        gsap.set(photoToRestore, { opacity: 1 });
+
+        if (pinToRestore) gsap.set(pinToRestore, { clearProps: 'y,transform' });
+
+        if (imgToRestore) {
+          gsap.set(imgToRestore, { clearProps: 'scale,boxShadow,transform,visibility' });
+          gsap.set(imgToRestore, {
+            filter: 'sepia(0.8) saturate(1.5) hue-rotate(-15deg) brightness(0.7)',
+          });
+        }
       }
 
       // Hide gallery
@@ -232,7 +232,7 @@ export function startReverse() {
     }
   });
 
-  // Fade gallery out, bring darkroom back, shrink photo
+  // Fade gallery out, bring darkroom back, shrink photo, fade image+pin back in
   reverseTl
     .to(galleryEl, { opacity: 0, duration: 0.3, ease: 'power2.in' }, 0)
     .to(darkroomEl, { opacity: 1, duration: 0.5, ease: 'power2.out' }, 0.1)
@@ -246,5 +246,8 @@ export function startReverse() {
         ease: 'power2.inOut',
       },
       0.2
-    );
+    )
+    // Fade the photo image and pin back in as it settles on the clothesline
+    .to(imgToRestore, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 0.5)
+    .to(pinToRestore, { opacity: 1, duration: 0.3, ease: 'power2.out' }, 0.6);
 }

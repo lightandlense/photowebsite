@@ -1,0 +1,330 @@
+/**
+ * gallery.css — Filmstrip gallery styles
+ *
+ * 35mm film aesthetic: sprocket holes, dark film base, frame numbers,
+ * hover enlarge, edge fade gradients, entrance animation.
+ */
+
+/* === Filmstrip container === */
+.filmstrip {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  min-height: 440px;
+  max-height: 640px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  /* Edge fade gradients to hint at more content */
+  mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+}
+
+/* === Track (translated horizontally) === */
+.filmstrip__track {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  will-change: transform;
+  padding: 0 8vw;
+}
+
+/* === Individual frame === */
+.filmstrip__frame {
+  flex-shrink: 0;
+  width: 300px;
+  background: #0d0a04;
+  border-left: 3px solid #1a1610;
+  border-right: 3px solid #1a1610;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  transition: z-index 0s;
+}
+
+/* Film base top/bottom strips with sprocket holes */
+.filmstrip__sprockets {
+  width: 100%;
+  height: 32px;
+  background: #0d0a04;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 0 14px;
+  flex-shrink: 0;
+}
+
+/* Individual sprocket hole */
+.filmstrip__sprocket-hole {
+  width: 16px;
+  height: 12px;
+  border-radius: 2px;
+  background: #1a1208;
+  border: 1px solid #0a0804;
+  flex-shrink: 0;
+}
+
+/* === Photo area === */
+.filmstrip__photo-area {
+  width: 264px;
+  height: 370px;
+  margin: 5px 0;
+  overflow: hidden;
+  position: relative;
+  background: #0d0a04;
+}
+
+.filmstrip__photo-area img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: sepia(0.3) saturate(1.2) brightness(0.85);
+  transition: filter 0.3s ease;
+}
+
+/* Gradient placeholder (no real photo yet) */
+.filmstrip__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: sepia(0.3) saturate(1.2) brightness(0.85);
+}
+
+/* === Frame number === */
+.filmstrip__frame-number {
+  width: 100%;
+  text-align: right;
+  padding: 2px 10px 0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.6rem;
+  color: var(--color-accent, #c8902a);
+  opacity: 0.35;
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+  background: #0d0a04;
+}
+
+/* === Hover: enlarge in-place === */
+/* Handled via GSAP for smooth animation, but base cursor hint */
+.filmstrip__frame:hover {
+  z-index: 10;
+}
+
+/* === Genre name — repositioned as film canister label === */
+#gallery.gallery--filmstrip .gallery__genre-name {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  left: auto;
+  margin: 0;
+  font-size: clamp(0.8rem, 2vw, 1.1rem);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  opacity: 0.4;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+/* ===========================================
+   LIGHTBOX
+   Full-screen overlay for viewing images at full size.
+   =========================================== */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+
+.lightbox__img {
+  max-width: 90vw;
+  max-height: 88vh;
+  object-fit: contain;
+  cursor: default;
+  border-radius: 2px;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.6);
+}
+
+.lightbox__close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--color-text, #e8d5b0);
+  font-size: 2.2rem;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+  line-height: 1;
+  padding: 0.3rem;
+  z-index: 10001;
+}
+.lightbox__close:hover {
+  opacity: 1;
+}
+
+.lightbox__prev,
+.lightbox__next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--color-text, #e8d5b0);
+  font-size: 3rem;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+  padding: 1rem;
+  z-index: 10001;
+  line-height: 1;
+}
+.lightbox__prev { left: 1rem; }
+.lightbox__next { right: 1rem; }
+.lightbox__prev:hover,
+.lightbox__next:hover {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .lightbox__img {
+    max-width: 96vw;
+    max-height: 85vh;
+  }
+  .lightbox__prev,
+  .lightbox__next {
+    font-size: 2.2rem;
+    padding: 0.6rem;
+  }
+}
+
+/* === Gallery layout override for filmstrip mode === */
+#gallery.gallery--filmstrip {
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+/* ===========================================
+   VERTICAL FILMSTRIP (drone genre)
+   Film runs top-to-bottom, sprockets on left/right,
+   landscape photo areas for horizontal images.
+   =========================================== */
+
+.filmstrip--vertical {
+  width: auto;
+  height: 100%;
+  max-height: none;
+  min-height: 0;
+  flex-direction: column;
+  align-items: center;
+  /* Vertical edge fades */
+  mask-image: linear-gradient(to bottom, transparent 0%, black 6%, black 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 6%, black 94%, transparent 100%);
+}
+
+.filmstrip--vertical .filmstrip__track {
+  flex-direction: column;
+  padding: 8vh 0;
+}
+
+.filmstrip--vertical .filmstrip__frame {
+  flex-direction: row;
+  width: auto;
+  border-left: none;
+  border-right: none;
+  border-top: 3px solid #1a1610;
+  border-bottom: 3px solid #1a1610;
+}
+
+/* Sprockets run vertically on left/right edges */
+.filmstrip--vertical .filmstrip__sprockets {
+  width: 32px;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 14px 0;
+}
+
+.filmstrip--vertical .filmstrip__sprocket-hole {
+  width: 12px;
+  height: 16px;
+}
+
+/* Landscape photo area for drone */
+.filmstrip--vertical .filmstrip__photo-area {
+  width: 420px;
+  height: 280px;
+  margin: 0 5px;
+}
+
+/* Frame number below photo area in vertical layout */
+.filmstrip--vertical .filmstrip__frame-number {
+  position: absolute;
+  bottom: 4px;
+  right: 42px;
+  width: auto;
+  background: transparent;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .filmstrip {
+    height: 60vh;
+    min-height: 360px;
+  }
+  .filmstrip__frame {
+    width: 220px;
+  }
+  .filmstrip__photo-area {
+    width: 190px;
+    height: 270px;
+  }
+  .filmstrip__sprockets {
+    height: 26px;
+    padding: 0 10px;
+  }
+  .filmstrip__sprocket-hole {
+    width: 13px;
+    height: 10px;
+  }
+  #gallery.gallery--filmstrip .gallery__genre-name {
+    writing-mode: horizontal-tb;
+    top: 1.2rem;
+    right: 1.2rem;
+    font-size: 0.75rem;
+  }
+  /* Vertical responsive */
+  .filmstrip--vertical .filmstrip__photo-area {
+    width: 300px;
+    height: 200px;
+  }
+  .filmstrip--vertical .filmstrip__sprockets {
+    width: 26px;
+  }
+}
+
+@media (max-width: 480px) {
+  .filmstrip__frame {
+    width: 180px;
+  }
+  .filmstrip__photo-area {
+    width: 154px;
+    height: 220px;
+  }
+  .filmstrip--vertical .filmstrip__photo-area {
+    width: 240px;
+    height: 160px;
+  }
+}

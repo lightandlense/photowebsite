@@ -12,6 +12,7 @@ import { store } from './store.js';
 import { initEntrance } from './entrance.js';
 import { initDarkroom } from './darkroom.js';
 import { startReverse } from './transition.js';
+import { initGallery } from './gallery.js';
 
 // GSAP globals are available via CDN scripts loaded before this module.
 // Do NOT import GSAP — access as window globals.
@@ -59,6 +60,7 @@ async function init() {
   // Initialize scenes
   initEntrance();  // CTA fade-in, door hover, walk-in timeline
   initDarkroom();  // Wire darkroom hover glows and nav click handlers (photos reveal later)
+  initGallery();   // Filmstrip gallery module (builds on demand via transition.js)
 
   // Gallery back button — triggers history.back() so popstate fires and startReverse() runs
   const galleryBack = document.getElementById('gallery-back');

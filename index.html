@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="css/entrance.css">
   <link rel="stylesheet" href="css/darkroom.css">
   <link rel="stylesheet" href="css/transition.css">
+  <link rel="stylesheet" href="css/gallery.css">
 </head>
 <body>
 
@@ -40,7 +41,7 @@
         <div class="clothesline__wire"></div>
         <figure class="clothesline__photo" data-genre="fashion">
           <div class="clothesline__pin"></div>
-          <div class="clothesline__image" style="background: linear-gradient(180deg, #4a3520 0%, #8B6914 25%, #C8902A 50%, #6a4a1a 75%, #3a2510 100%);">
+          <div class="clothesline__image" style="background: url('images/fashion/high-fashion-gobo-Photography.jpg') center/cover;">
             <span class="clothesline__genre-label">Fashion</span>
           </div>
         </figure>
@@ -50,7 +51,7 @@
         </figure>
         <figure class="clothesline__photo" data-genre="beauty">
           <div class="clothesline__pin"></div>
-          <div class="clothesline__image" style="background: linear-gradient(180deg, #3a1830 0%, #6B2D5B 30%, #D4698E 55%, #8a4060 75%, #2a1020 100%);">
+          <div class="clothesline__image" style="background: url('images/beauty/DSC5447-Edit-min.jpg') center/cover;">
             <span class="clothesline__genre-label">Beauty</span>
           </div>
         </figure>
@@ -60,7 +61,7 @@
         </figure>
         <figure class="clothesline__photo" data-genre="light-painting">
           <div class="clothesline__pin"></div>
-          <div class="clothesline__image" style="background: linear-gradient(180deg, #0a1a2e 0%, #1A3A5C 25%, #4A90D9 50%, #2a5080 75%, #0e1e30 100%);">
+          <div class="clothesline__image" style="background: url('images/light-painting/Russell-Klimas-Lightpainting-min.jpg') center/cover;">
             <span class="clothesline__genre-label">Light Painting</span>
           </div>
         </figure>
@@ -71,7 +72,7 @@
         <div class="clothesline__wire"></div>
         <figure class="clothesline__photo" data-genre="drone">
           <div class="clothesline__pin"></div>
-          <div class="clothesline__image" style="background: linear-gradient(180deg, #4a6a30 0%, #6B8F3C 20%, #8aaa50 40%, #2D4A1A 65%, #1a2e10 100%);">
+          <div class="clothesline__image" style="background: url('images/drone/Balance-Steamboat-Garden-of-the-Gods-drone-light-painting.jpg') center/cover;">
             <span class="clothesline__genre-label">Drone</span>
           </div>
         </figure>
@@ -87,25 +88,20 @@
             <span class="clothesline__genre-label">Contact</span>
           </div>
         </figure>
-        <figure class="clothesline__photo" data-genre="video">
+        <figure class="clothesline__photo" data-genre="gels">
           <div class="clothesline__pin"></div>
-          <div class="clothesline__image" style="background: linear-gradient(180deg, #2a0e0e 0%, #4A1A1A 20%, #B83C3C 45%, #7a2828 70%, #1a0808 100%);">
-            <span class="clothesline__genre-label">Video</span>
+          <div class="clothesline__image" style="background: url('images/gels/DSC7601-Edit.jpg') center/cover;">
+            <span class="clothesline__genre-label">Gels</span>
           </div>
         </figure>
       </div>
-
-      <!-- Hand images — animated by transition.js, hidden until triggered -->
-      <div id="hand-container" aria-hidden="true">
-        <img id="hand-open" src="images/hand/open.png" alt="" draggable="false">
-        <img id="hand-grab" src="images/hand/grab.png" alt="" draggable="false">
-      </div>
     </section>
 
-    <!-- Gallery placeholder — Phase 3 dissolve target. Phase 4 replaces contents with filmstrip. -->
-    <section id="gallery" class="scene gallery--placeholder" style="display: none;">
+    <!-- Gallery — filmstrip built dynamically by js/gallery.js -->
+    <section id="gallery" class="scene" style="display: none;">
       <div class="gallery__bg"></div>
       <p class="gallery__genre-name" id="gallery-genre-name"></p>
+      <!-- Filmstrip injected here by buildFilmstrip() -->
       <button id="gallery-back" class="gallery__back" aria-label="Return to darkroom">&#8592; Back</button>
     </section>
 
