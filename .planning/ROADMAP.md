@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation** - Project scaffolding, CSS design system, router, state store, and image pipeline spec (completed 2026-03-01)
 - [x] **Phase 2: Entrance and Darkroom Scene** - Building exterior walk-in, darkroom clothesline with ambient lighting, and in-world navigation (completed 2026-03-01)
-- [ ] **Phase 3: Transition Sequences** - Hand-grab animation and camera pull-in from clothesline to filmstrip
+- [x] **Phase 3: Transition Sequences** - Hand-grab animation and camera pull-in from clothesline to filmstrip (completed 2026-03-01)
 - [ ] **Phase 4: Filmstrip Gallery** - Horizontal filmstrip with all five genres, photo enlarge-in-place, and inline video
 - [ ] **Phase 5: Pages and Performance** - About, Contact (Formspree), and full performance/mobile validation pass
 
@@ -58,7 +58,7 @@ Plans:
   1. Clicking a clothesline photo triggers a hand entering the frame, grasping the clothespin, and the photo releasing — the animation reads as physically removing a photograph
   2. Immediately after the hand-grab, the camera pulls into the selected photo in a continuous motion that dissolves into the filmstrip gallery view — no hard cut or blank frame visible
   3. The reverse pull-out animation plays when the user navigates back from the filmstrip to the darkroom — the clothesline reappears with the selected photo absent from its pin
-**Plans:** 1 plan
+**Plans:** 1/1 plans complete
 Plans:
 - [ ] 03-01-PLAN.md — Hand-grab animation, camera pull-in, reverse transition, darkroom/main.js wiring
 
@@ -94,6 +94,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete   | 2026-03-01 |
 | 2. Entrance and Darkroom Scene | 2/2 | Complete   | 2026-03-01 |
-| 3. Transition Sequences | 0/1 | In progress | - |
+| 3. Transition Sequences | 1/1 | Complete   | 2026-03-01 |
 | 4. Filmstrip Gallery | 0/? | Not started | - |
 | 5. Pages and Performance | 0/? | Not started | - |

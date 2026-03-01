@@ -23,8 +23,8 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **DARK-02**: Film grain texture overlay on the darkroom scene
 - [x] **DARK-03**: Five genre photographs displayed hanging from a clothesline with clothespins
 - [x] **DARK-04**: Clothesline photos have subtle ambient sway animation
-- [ ] **DARK-05**: Clicking a photo triggers a hand-grab animation that removes it from the clothespin
-- [ ] **DARK-06**: Camera pulls into the selected photo (pull-in transition) leading to the filmstrip gallery
+- [x] **DARK-05**: Clicking a photo triggers a hand-grab animation that removes it from the clothespin
+- [x] **DARK-06**: Camera pulls into the selected photo (pull-in transition) leading to the filmstrip gallery
 - [x] **DARK-07**: Silhouette figure visible in the darkroom background — click navigates to About page
 - [x] **DARK-08**: Silhouette has a small always-visible "About" label near it
 - [x] **DARK-09**: Business card on the darkroom table — click navigates to Contact page
@@ -121,8 +121,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | DARK-08 | Phase 2 | Complete |
 | DARK-09 | Phase 2 | Complete |
 | DARK-10 | Phase 2 | Complete |
-| DARK-05 | Phase 3 | Pending |
-| DARK-06 | Phase 3 | Pending |
+| DARK-05 | Phase 3 | Complete |
+| DARK-06 | Phase 3 | Complete |
 | GLRY-01 | Phase 4 | Pending |
 | GLRY-02 | Phase 4 | Pending |
 | GLRY-03 | Phase 4 | Pending |

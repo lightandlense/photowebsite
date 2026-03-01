@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-03-01T05:13:18.392Z"
+last_updated: "2026-03-01T06:00:00.000Z"
 progress:
-  total_phases: 2
+  total_phases: 5
   completed_phases: 2
-  total_plans: 4
-  completed_plans: 4
+  total_plans: 5
+  completed_plans: 5
 ---
 
 # Project State
@@ -22,12 +22,12 @@ See: .planning/PROJECT.md (updated 2026-02-28)
 
 ## Current Position
 
-Phase: 2 of 5 (Entrance and Darkroom Scene) — COMPLETE
-Plan: 2 of 2 in phase 2 — COMPLETE
-Status: Phase 2 complete, ready for Phase 3
-Last activity: 2026-03-01 — Plan 02-02 complete
+Phase: 3 of 5 (Transition Sequences) — IN PROGRESS
+Plan: 1 of 1 in phase 3 — COMPLETE
+Status: Phase 3 complete, ready for Phase 4
+Last activity: 2026-03-01 — Plan 03-01 complete
 
-Progress: [████░░░░░░] 40%
+Progress: [██████░░░░] 60%
 
 ## Performance Metrics
 
@@ -42,9 +42,10 @@ Progress: [████░░░░░░] 40%
 |-------|-------|-------|----------|
 | 1 — Foundation | 2 | 4 min | 2 min |
 | 2 — Entrance and Darkroom Scene | 2 | 5 min | 2.5 min |
+| 3 — Transition Sequences | 1 | 2 min | 2 min |
 
 **Recent Trend:**
-- Last 5 plans: 2 min, 2 min, 3 min, 2 min
+- Last 5 plans: 2 min, 2 min, 3 min, 2 min, 2 min
 - Trend: Consistent 2-3 min/plan
 
 *Updated after each plan completion*
@@ -76,6 +77,10 @@ Recent decisions affecting current work:
 - 02-02: showDarkroom is internal to entrance.js, not exported — entrance.js owns the full transition sequence
 - 02-02: initDarkroom and revealDarkroom are separate exports — init on page load, reveal only after walk-in completes
 - 02-02: Photo click handlers log genre to console in Phase 2 — hand-grab transition wired in Phase 3
+- 03-01: Hand hidden via gsap.set(display:none) before forwardTl.reverse() — prevents hand replay on back navigation
+- 03-01: Gallery uses .gallery--visible CSS class alongside GSAP display — ensures flexbox centering works reliably
+- 03-01: forwardTl rebuilt per genre click — photo getBoundingClientRect differs per click, must be measured fresh
+- 03-01: navigateTo called in onComplete callback — URL updates only after gallery is visually ready
 
 ### Pending Todos
 
@@ -83,11 +88,10 @@ None yet.
 
 ### Blockers/Concerns
 
-- Phase 3: Hand animation and pull-in are highest-craft risk — budget creative iteration time, not just implementation time
 - Phase 4: iOS Safari ScrollTrigger pin jitter must be tested on real hardware before populating gallery with real photos
 
 ## Session Continuity
 
 Last session: 2026-03-01
-Stopped at: Completed 02-02-PLAN.md — entrance walk-in animation, darkroom interactivity, main.js scene wiring
+Stopped at: Completed 03-01-PLAN.md — hand-grab transition, gallery placeholder, forward/reverse GSAP timeline
 Resume file: None
