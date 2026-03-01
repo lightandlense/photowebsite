@@ -12,9 +12,9 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **ENTR-01**: Visitor sees a photo-realistic old photo studio building exterior on page load
 - [x] **ENTR-02**: Warm light leaks from under the studio door, inviting entry
 - [x] **ENTR-03**: "Step Inside" text fades in near the door after a short delay
-- [ ] **ENTR-04**: Door handle/frame glows warmly on hover with cursor change
-- [ ] **ENTR-05**: Clicking the door triggers a parallax walk-in animation (layered ground/building shift)
-- [ ] **ENTR-06**: Door opens and fades into the darkroom interior
+- [x] **ENTR-04**: Door handle/frame glows warmly on hover with cursor change
+- [x] **ENTR-05**: Clicking the door triggers a parallax walk-in animation (layered ground/building shift)
+- [x] **ENTR-06**: Door opens and fades into the darkroom interior
 - [x] **ENTR-07**: On mobile, view is cropped to focus on the door area with clear tap target
 
 ### Darkroom
@@ -109,9 +109,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | ENTR-01 | Phase 2 | Complete |
 | ENTR-02 | Phase 2 | Complete |
 | ENTR-03 | Phase 2 | Complete |
-| ENTR-04 | Phase 2 | Pending |
-| ENTR-05 | Phase 2 | Pending |
-| ENTR-06 | Phase 2 | Pending |
+| ENTR-04 | Phase 2 | Complete |
+| ENTR-05 | Phase 2 | Complete |
+| ENTR-06 | Phase 2 | Complete |
 | ENTR-07 | Phase 2 | Complete |
 | DARK-01 | Phase 2 | Complete |
 | DARK-02 | Phase 2 | Complete |

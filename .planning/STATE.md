@@ -2,13 +2,13 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: unknown
-last_updated: "2026-03-01T04:29:02.061Z"
+status: in_progress
+last_updated: "2026-03-01T05:08:00.000Z"
 progress:
-  total_phases: 1
+  total_phases: 5
   completed_phases: 1
-  total_plans: 2
-  completed_plans: 2
+  total_plans: 4
+  completed_plans: 4
 ---
 
 # Project State
@@ -18,33 +18,33 @@ progress:
 See: .planning/PROJECT.md (updated 2026-02-28)
 
 **Core value:** Visitors feel like they've stepped into a darkroom and are interacting with physical photographs — the immersion is what makes this portfolio memorable and converts visitors into clients.
-**Current focus:** Phase 2 — Entrance and Darkroom Scene
+**Current focus:** Phase 3 — Photo Interaction (hand-grab transition)
 
 ## Current Position
 
-Phase: 2 of 5 (Entrance and Darkroom Scene)
-Plan: 1 of 2 in current phase
-Status: In progress
-Last activity: 2026-02-28 — Plan 02-01 complete
+Phase: 2 of 5 (Entrance and Darkroom Scene) — COMPLETE
+Plan: 2 of 2 in phase 2 — COMPLETE
+Status: Phase 2 complete, ready for Phase 3
+Last activity: 2026-03-01 — Plan 02-02 complete
 
-Progress: [███░░░░░░░] 30%
+Progress: [████░░░░░░] 40%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 3
+- Total plans completed: 4
 - Average duration: 2 min
-- Total execution time: 0.12 hours
+- Total execution time: 0.13 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 1 — Foundation | 2 | 4 min | 2 min |
-| 2 — Entrance and Darkroom Scene | 1 | 3 min | 3 min |
+| 2 — Entrance and Darkroom Scene | 2 | 5 min | 2.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 2 min, 2 min, 3 min
+- Last 5 plans: 2 min, 2 min, 3 min, 2 min
 - Trend: Consistent 2-3 min/plan
 
 *Updated after each plan completion*
@@ -72,6 +72,10 @@ Recent decisions affecting current work:
 - 02-01: Sway animation uses CSS rotate property with will-change: rotate for GPU compositing without triggering layout
 - 02-01: door-frame layer uses ::before CSS shape — no texture image needed for the dark surround
 - 02-01: Clothespin notch uses ::after with var(--color-bg) background to create gap illusion without border tricks
+- 02-02: Walk-in GSAP timeline built once outside click handler (paused), played on click — avoids accumulation bugs on rapid triggers
+- 02-02: showDarkroom is internal to entrance.js, not exported — entrance.js owns the full transition sequence
+- 02-02: initDarkroom and revealDarkroom are separate exports — init on page load, reveal only after walk-in completes
+- 02-02: Photo click handlers log genre to console in Phase 2 — hand-grab transition wired in Phase 3
 
 ### Pending Todos
 
@@ -84,6 +88,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-28
-Stopped at: Completed 02-01-PLAN.md — entrance/darkroom HTML structure, CSS scene layers, photographic textures
+Last session: 2026-03-01
+Stopped at: Completed 02-02-PLAN.md — entrance walk-in animation, darkroom interactivity, main.js scene wiring
 Resume file: None
