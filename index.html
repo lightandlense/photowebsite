@@ -37,13 +37,14 @@
     </section>
 
     <section id="darkroom" class="scene" style="display: none;">
+      <!-- Blurred photographic darkroom background -->
+      <div class="darkroom__background"></div>
       <!-- Ambient safe light glow -->
       <div class="darkroom__safelight"></div>
 
-      <!-- Clothesline wire -->
-      <div class="clothesline">
+      <!-- Top clothesline — 3 photos -->
+      <div class="clothesline clothesline--top">
         <div class="clothesline__wire"></div>
-        <!-- Five genre photo slots — use colored placeholder divs for now (real photos in Phase 4) -->
         <figure class="clothesline__photo" data-genre="fashion">
           <div class="clothesline__pin"></div>
           <div class="clothesline__image" style="background: linear-gradient(135deg, #8B6914, #C8902A);">
@@ -62,6 +63,11 @@
             <span class="clothesline__genre-label">Light Painting</span>
           </div>
         </figure>
+      </div>
+
+      <!-- Bottom clothesline — 2 photos -->
+      <div class="clothesline clothesline--bottom">
+        <div class="clothesline__wire"></div>
         <figure class="clothesline__photo" data-genre="drone">
           <div class="clothesline__pin"></div>
           <div class="clothesline__image" style="background: linear-gradient(135deg, #2D4A1A, #6B8F3C);">
@@ -76,13 +82,15 @@
         </figure>
       </div>
 
-      <!-- In-world navigation elements positioned below clothesline -->
+      <!-- In-world navigation — person in background (About) -->
       <div class="nav-element nav-element--silhouette" id="silhouette-figure" role="button" tabindex="0" aria-label="Navigate to About page">
         <div class="nav-element__image nav-element__image--silhouette"></div>
         <span class="nav-element__label" id="label-about">About</span>
       </div>
 
+      <!-- In-world navigation — business card on table (Contact) -->
       <div class="nav-element nav-element--card" id="business-card" role="button" tabindex="0" aria-label="Navigate to Contact page">
+        <div class="nav-element__image nav-element__image--table"></div>
         <div class="nav-element__image nav-element__image--card"></div>
         <span class="nav-element__label" id="label-contact">Contact</span>
       </div>

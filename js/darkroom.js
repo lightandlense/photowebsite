@@ -4,7 +4,7 @@
  * Handles all darkroom interior interactivity:
  * - Nav element hover glows (silhouette figure + business card)
  * - Nav element click navigation via router
- * - Clothesline photo hover scale lift (preview for Phase 3 hand-grab)
+ * - Clothesline photo hover: darkroom red → full color reveal
  * - Photo click placeholder log (hand-grab transition wired in Phase 3)
  * - Staggered photo + nav reveal animation on first entrance
  *
@@ -18,10 +18,6 @@ import { navigateTo } from './router.js';
 /**
  * Wires hover glow and click navigation for a darkroom nav element.
  * Labels brighten from 0.5 to 1.0 opacity on hover.
- *
- * @param {string} elementId - ID of the nav element
- * @param {string} labelId - ID of the label span
- * @param {string} route - Route path to navigate to on click
  */
 function wireNavElement(elementId, labelId, route) {
   const el = document.getElementById(elementId);
@@ -47,30 +43,36 @@ function wireNavElement(elementId, labelId, route) {
 /**
  * Initialises darkroom interactivity — called once on page load.
  * Sets up all event listeners so they are ready when the scene becomes visible.
- * Does NOT trigger any reveal animations (those are in revealDarkroom).
  */
 export function initDarkroom() {
-  // Nav element hover glows + click navigation (DARK-08, DARK-09, DARK-10)
+  // Nav element hover glows + click navigation
   wireNavElement('silhouette-figure', 'label-about', '/about');
   wireNavElement('business-card', 'label-contact', '/contact');
 
-  // Clothesline photo hover — subtle scale lift (DARK-07, preview for Phase 3)
+  // Clothesline photo hover — reveal full color from darkroom red
   document.querySelectorAll('.clothesline__photo').forEach(photo => {
+    const img = photo.querySelector('.clothesline__image');
+
     photo.addEventListener('mouseenter', () => {
-      gsap.to(photo.querySelector('.clothesline__image'), {
+      gsap.to(img, {
+        filter: 'sepia(0) saturate(1) hue-rotate(0deg) brightness(1)',
         scale: 1.05,
         boxShadow: '0 8px 24px rgba(0,0,0,0.8)',
-        duration: 0.3
+        duration: 0.6,
+        ease: 'power2.out'
       });
     });
     photo.addEventListener('mouseleave', () => {
-      gsap.to(photo.querySelector('.clothesline__image'), {
+      gsap.to(img, {
+        filter: 'sepia(0.8) saturate(1.5) hue-rotate(-15deg) brightness(0.7)',
         scale: 1,
         boxShadow: '0 4px 12px rgba(0,0,0,0.6)',
-        duration: 0.4
+        duration: 0.8,
+        ease: 'power2.inOut'
       });
     });
-    // Photo click is a no-op for now — Phase 3 adds the hand-grab transition
+
+    // Photo click — Phase 3 adds the hand-grab transition
     photo.addEventListener('click', () => {
       const genre = photo.dataset.genre;
       console.log(`[darkroom] Photo clicked: ${genre} (hand-grab transition in Phase 3)`);
@@ -81,13 +83,13 @@ export function initDarkroom() {
 }
 
 /**
- * Reveals the darkroom with staggered entrance animations (DARK-03).
+ * Reveals the darkroom with staggered entrance animations.
  * Called by entrance.js showDarkroom() after the walk-in transition completes.
- * Plays once — not called on page load.
+ * Top row photos reveal first, then bottom row, then nav elements.
  */
 export function revealDarkroom() {
-  // Stagger-reveal the clothesline photos from top with opacity fade
-  gsap.from('.clothesline__photo', {
+  // Top clothesline photos first
+  gsap.from('.clothesline--top .clothesline__photo', {
     opacity: 0,
     y: -20,
     duration: 0.8,
@@ -99,15 +101,29 @@ export function revealDarkroom() {
     ease: 'power2.out'
   });
 
-  // Fade in nav elements slightly after photos
+  // Bottom clothesline photos slightly after
+  gsap.from('.clothesline--bottom .clothesline__photo', {
+    opacity: 0,
+    y: -20,
+    duration: 0.8,
+    delay: 0.5,
+    stagger: {
+      each: 0.15,
+      from: 'start',
+      ease: 'power2.out'
+    },
+    ease: 'power2.out'
+  });
+
+  // Fade in nav elements after photos
   gsap.from('.nav-element', {
     opacity: 0,
     y: 10,
     duration: 0.6,
-    delay: 1.0,
+    delay: 1.2,
     stagger: 0.2,
     ease: 'power2.out'
   });
 
-  console.log('[darkroom] Darkroom revealed — photo stagger + nav fade in');
+  console.log('[darkroom] Darkroom revealed — two-row photo stagger + nav fade in');
 }
