@@ -45,7 +45,7 @@ Plans:
   3. On mobile, the view crops to the door with a clear tap target and the walk-in animation completes without layout breaking
   4. Inside the darkroom, five photographs hang from a clothesline with clothespins, each with a subtle ambient sway; the scene has dim ambient lighting, warm tones, and a film grain texture overlay
   5. Clicking the silhouette figure in the background navigates to the About page route; clicking the business card navigates to the Contact page route; both have always-visible labels
-**Plans:** 2 plans
+**Plans:** 1/2 plans executed
 Plans:
 - [ ] 02-01-PLAN.md — HTML scene structure, entrance CSS layers, darkroom CSS atmosphere and clothesline
 - [ ] 02-02-PLAN.md — Entrance walk-in GSAP timeline, darkroom interactivity, main.js wiring
@@ -91,7 +91,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete   | 2026-03-01 |
-| 2. Entrance and Darkroom Scene | 0/2 | In progress | - |
+| 2. Entrance and Darkroom Scene | 1/2 | In Progress|  |
 | 3. Transition Sequences | 0/? | Not started | - |
 | 4. Filmstrip Gallery | 0/? | Not started | - |
 | 5. Pages and Performance | 0/? | Not started | - |

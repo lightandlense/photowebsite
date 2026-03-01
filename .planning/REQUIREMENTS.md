@@ -9,26 +9,26 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Entrance
 
-- [ ] **ENTR-01**: Visitor sees a photo-realistic old photo studio building exterior on page load
-- [ ] **ENTR-02**: Warm light leaks from under the studio door, inviting entry
-- [ ] **ENTR-03**: "Step Inside" text fades in near the door after a short delay
+- [x] **ENTR-01**: Visitor sees a photo-realistic old photo studio building exterior on page load
+- [x] **ENTR-02**: Warm light leaks from under the studio door, inviting entry
+- [x] **ENTR-03**: "Step Inside" text fades in near the door after a short delay
 - [ ] **ENTR-04**: Door handle/frame glows warmly on hover with cursor change
 - [ ] **ENTR-05**: Clicking the door triggers a parallax walk-in animation (layered ground/building shift)
 - [ ] **ENTR-06**: Door opens and fades into the darkroom interior
-- [ ] **ENTR-07**: On mobile, view is cropped to focus on the door area with clear tap target
+- [x] **ENTR-07**: On mobile, view is cropped to focus on the door area with clear tap target
 
 ### Darkroom
 
-- [ ] **DARK-01**: Darkroom scene has dim ambient lighting with warm tones
-- [ ] **DARK-02**: Film grain texture overlay on the darkroom scene
-- [ ] **DARK-03**: Five genre photographs displayed hanging from a clothesline with clothespins
-- [ ] **DARK-04**: Clothesline photos have subtle ambient sway animation
+- [x] **DARK-01**: Darkroom scene has dim ambient lighting with warm tones
+- [x] **DARK-02**: Film grain texture overlay on the darkroom scene
+- [x] **DARK-03**: Five genre photographs displayed hanging from a clothesline with clothespins
+- [x] **DARK-04**: Clothesline photos have subtle ambient sway animation
 - [ ] **DARK-05**: Clicking a photo triggers a hand-grab animation that removes it from the clothespin
 - [ ] **DARK-06**: Camera pulls into the selected photo (pull-in transition) leading to the filmstrip gallery
-- [ ] **DARK-07**: Silhouette figure visible in the darkroom background — click navigates to About page
-- [ ] **DARK-08**: Silhouette has a small always-visible "About" label near it
-- [ ] **DARK-09**: Business card on the darkroom table — click navigates to Contact page
-- [ ] **DARK-10**: Business card has a small always-visible "Contact" label near it
+- [x] **DARK-07**: Silhouette figure visible in the darkroom background — click navigates to About page
+- [x] **DARK-08**: Silhouette has a small always-visible "About" label near it
+- [x] **DARK-09**: Business card on the darkroom table — click navigates to Contact page
+- [x] **DARK-10**: Business card has a small always-visible "Contact" label near it
 
 ### Gallery
 
@@ -106,21 +106,21 @@ Which phases cover which requirements. Updated during roadmap creation.
 | INFR-03 | Phase 1 | Complete |
 | INFR-04 | Phase 1 | Complete (01-01) |
 | INFR-05 | Phase 1 | Complete (01-01) |
-| ENTR-01 | Phase 2 | Pending |
-| ENTR-02 | Phase 2 | Pending |
-| ENTR-03 | Phase 2 | Pending |
+| ENTR-01 | Phase 2 | Complete |
+| ENTR-02 | Phase 2 | Complete |
+| ENTR-03 | Phase 2 | Complete |
 | ENTR-04 | Phase 2 | Pending |
 | ENTR-05 | Phase 2 | Pending |
 | ENTR-06 | Phase 2 | Pending |
-| ENTR-07 | Phase 2 | Pending |
-| DARK-01 | Phase 2 | Pending |
-| DARK-02 | Phase 2 | Pending |
-| DARK-03 | Phase 2 | Pending |
-| DARK-04 | Phase 2 | Pending |
-| DARK-07 | Phase 2 | Pending |
-| DARK-08 | Phase 2 | Pending |
-| DARK-09 | Phase 2 | Pending |
-| DARK-10 | Phase 2 | Pending |
+| ENTR-07 | Phase 2 | Complete |
+| DARK-01 | Phase 2 | Complete |
+| DARK-02 | Phase 2 | Complete |
+| DARK-03 | Phase 2 | Complete |
+| DARK-04 | Phase 2 | Complete |
+| DARK-07 | Phase 2 | Complete |
+| DARK-08 | Phase 2 | Complete |
+| DARK-09 | Phase 2 | Complete |
+| DARK-10 | Phase 2 | Complete |
 | DARK-05 | Phase 3 | Pending |
 | DARK-06 | Phase 3 | Pending |
 | GLRY-01 | Phase 4 | Pending |

@@ -18,33 +18,34 @@ progress:
 See: .planning/PROJECT.md (updated 2026-02-28)
 
 **Core value:** Visitors feel like they've stepped into a darkroom and are interacting with physical photographs — the immersion is what makes this portfolio memorable and converts visitors into clients.
-**Current focus:** Phase 1 — Foundation
+**Current focus:** Phase 2 — Entrance and Darkroom Scene
 
 ## Current Position
 
-Phase: 1 of 5 (Foundation)
-Plan: 2 of 2 in current phase
-Status: Phase complete
-Last activity: 2026-03-01 — Plan 01-02 complete
+Phase: 2 of 5 (Entrance and Darkroom Scene)
+Plan: 1 of 2 in current phase
+Status: In progress
+Last activity: 2026-02-28 — Plan 02-01 complete
 
-Progress: [██░░░░░░░░] 20%
+Progress: [███░░░░░░░] 30%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 2
+- Total plans completed: 3
 - Average duration: 2 min
-- Total execution time: 0.07 hours
+- Total execution time: 0.12 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 1 — Foundation | 2 | 4 min | 2 min |
+| 2 — Entrance and Darkroom Scene | 1 | 3 min | 3 min |
 
 **Recent Trend:**
-- Last 5 plans: 2 min, 2 min
-- Trend: Consistent 2 min/plan
+- Last 5 plans: 2 min, 2 min, 3 min
+- Trend: Consistent 2-3 min/plan
 
 *Updated after each plan completion*
 
@@ -67,6 +68,10 @@ Recent decisions affecting current work:
 - 01-02: pushState does NOT fire popstate per HTML spec — manual CustomEvent dispatch after pushState is essential
 - 01-02: No navigateTo/pushState call on page load — breaks WebKit back button (anti-pattern)
 - 01-02: GSAP accessed as CDN window global, not ES module import — globals guaranteed available before module script runs
+- 02-01: Entrance layers use background-image URL as primary visual (CSS gradient is fallback only) — photographic textures per locked user decision
+- 02-01: Sway animation uses CSS rotate property with will-change: rotate for GPU compositing without triggering layout
+- 02-01: door-frame layer uses ::before CSS shape — no texture image needed for the dark surround
+- 02-01: Clothespin notch uses ::after with var(--color-bg) background to create gap illusion without border tricks
 
 ### Pending Todos
 
@@ -79,6 +84,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-01
-Stopped at: Completed 01-02-PLAN.md — SPA router, state store, main.js entry point
+Last session: 2026-02-28
+Stopped at: Completed 02-01-PLAN.md — entrance/darkroom HTML structure, CSS scene layers, photographic textures
 Resume file: None
