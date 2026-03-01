@@ -1,0 +1,31 @@
+/* ============================================================
+   tokens.css — Design System Custom Properties
+   Darkroom Portfolio — Phase 1 Foundation
+   ============================================================ */
+
+:root {
+  /* --- Color Palette --- */
+  --color-bg: #1a1208;           /* Deep warm black — darkroom ambient */
+  --color-bg-surface: #241a0e;   /* Slightly lighter for walls/surfaces */
+  --color-text: #e8d5b0;         /* Warm off-white — cream/amber tint */
+  --color-accent: #c8902a;       /* Warm gold — interactive hints */
+  --color-amber-glow: #ff8c00;   /* Safelight orange — glow effects */
+
+  /* --- Typography --- */
+  --font-serif: 'Playfair Display', Georgia, serif;
+
+  /* --- Font Sizes --- */
+  --font-size-base: 1rem;
+  --font-size-lg: 1.5rem;
+  --font-size-xl: 2.5rem;
+
+  /* --- Transition Durations ---
+     Cinematic pacing per user decision: deliberate 1-2 second transitions */
+  --duration-fast: 0.3s;
+  --duration-normal: 0.8s;
+  --duration-cinematic: 1.5s;
+
+  /* --- Film Grain --- */
+  --grain-opacity: 0.04;
+  --grain-size: 0.65;
+}

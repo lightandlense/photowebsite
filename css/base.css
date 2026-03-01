@@ -1,0 +1,109 @@
+/* ============================================================
+   base.css — Global Styles, Reset, Typography, Layout
+   Darkroom Portfolio — Phase 1 Foundation
+   Depends on: css/tokens.css (custom properties)
+   ============================================================ */
+
+/* --- Minimal CSS Reset --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Global Body --- */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-serif);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- App Root --- */
+#app {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* --- Headings ---
+   Elegant at regular weight — Playfair Display is designed for it */
+h1 {
+  font-size: var(--font-size-xl);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: var(--font-size-lg);
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+h3 {
+  font-size: var(--font-size-base);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* --- Links --- */
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color var(--duration-fast) ease;
+}
+
+a:hover,
+a:focus {
+  color: var(--color-amber-glow);
+}
+
+/* --- Text Selection --- */
+::selection {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+/* --- Images --- */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* --- Accessibility: Visually Hidden ---
+   Screen-reader only text, not visible on screen */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============================================================
+   Responsive Breakpoints — Mobile-first
+   ============================================================ */
+
+/* --- Tablet (768px and up) --- */
+@media (min-width: 768px) {
+  body {
+    font-size: 1.1rem;
+  }
+}
+
+/* --- Desktop (1024px and up) --- */
+@media (min-width: 1024px) {
+  body {
+    font-size: 1.125rem;
+  }
+}
