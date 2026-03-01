@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="css/grain.css">
   <link rel="stylesheet" href="css/entrance.css">
   <link rel="stylesheet" href="css/darkroom.css">
+  <link rel="stylesheet" href="css/transition.css">
 </head>
 <body>
 
@@ -93,6 +94,47 @@
           </div>
         </figure>
       </div>
+
+      <!-- Hand silhouette SVG — animated by transition.js, hidden until triggered -->
+      <svg
+        id="hand-silhouette"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 120 180"
+        aria-hidden="true"
+        style="
+          position: fixed;
+          bottom: -180px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 120px;
+          height: 180px;
+          z-index: 100;
+          display: none;
+          pointer-events: none;
+          fill: rgba(40, 24, 8, 0.85);
+          filter: drop-shadow(0 0 8px rgba(200, 144, 42, 0.4));
+        "
+      >
+        <!--
+          Upward-reaching hand silhouette: palm base at bottom, four fingers + thumb pointing up.
+          Silhouette style — no fine detail, warm amber tint from fill color.
+        -->
+        <path d="
+          M 55,170 L 50,80 L 45,50 C 44,38 56,38 57,50 L 58,70
+          L 58,40 C 57,28 69,28 70,40 L 71,65
+          L 71,35 C 70,23 82,23 83,35 L 84,62
+          L 84,45 C 83,33 95,33 96,45 L 97,80
+          L 97,90 C 105,75 112,80 110,92 L 97,120
+          C 97,140 90,155 85,170 Z
+        "/>
+      </svg>
+    </section>
+
+    <!-- Gallery placeholder — Phase 3 dissolve target. Phase 4 replaces contents with filmstrip. -->
+    <section id="gallery" class="scene gallery--placeholder" style="display: none;">
+      <div class="gallery__bg"></div>
+      <p class="gallery__genre-name" id="gallery-genre-name"></p>
+      <button id="gallery-back" class="gallery__back" aria-label="Return to darkroom">&#8592; Back</button>
     </section>
 
   </div>

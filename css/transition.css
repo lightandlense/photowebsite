@@ -1,0 +1,90 @@
+/**
+ * transition.css — Hand-grab and gallery transition styles
+ *
+ * Covers:
+ * - Hand silhouette positioning (duplicates inline style as CSS fallback)
+ * - Absent photo state (.clothesline__photo--empty)
+ * - Gallery placeholder section (Phase 3 — replaced by Phase 4 filmstrip)
+ */
+
+/* === Hand silhouette positioning === */
+#hand-silhouette {
+  position: fixed;
+  bottom: -180px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 180px;
+  z-index: 100;
+  display: none;
+  pointer-events: none;
+}
+
+/* === Absent photo state === */
+/* Photo slot remains in DOM but shows as empty — preserves clothesline layout */
+.clothesline__photo--empty .clothesline__image,
+.clothesline__photo--empty .clothesline__pin {
+  visibility: hidden;
+  opacity: 0;
+  transition: none;
+}
+.clothesline__photo--empty {
+  cursor: default;
+  pointer-events: none;
+}
+
+/* === Gallery placeholder (Phase 3 — replaced by Phase 4) === */
+#gallery {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  background: var(--color-bg, #1a1208);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Class-based visible state — toggled alongside GSAP display change */
+/* Ensures flexbox centering works even when GSAP sets display: block */
+#gallery.gallery--visible {
+  display: flex !important;
+}
+
+.gallery__bg {
+  position: absolute;
+  inset: 0;
+  background: var(--color-bg, #1a1208);
+  z-index: -1;
+}
+
+.gallery__genre-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: var(--color-text, #e8d5b0);
+  opacity: 0.7;
+  text-transform: capitalize;
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+.gallery__back {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  z-index: 110;
+  background: none;
+  border: 1px solid var(--color-text, #e8d5b0);
+  color: var(--color-text, #e8d5b0);
+  font-family: 'Playfair Display', serif;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+  letter-spacing: 0.03em;
+}
+.gallery__back:hover {
+  opacity: 1;
+}
