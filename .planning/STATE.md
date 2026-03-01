@@ -10,28 +10,28 @@ See: .planning/PROJECT.md (updated 2026-02-28)
 ## Current Position
 
 Phase: 1 of 5 (Foundation)
-Plan: 1 of 2 in current phase
-Status: In progress
-Last activity: 2026-03-01 — Plan 01-01 complete
+Plan: 2 of 2 in current phase
+Status: Phase complete
+Last activity: 2026-03-01 — Plan 01-02 complete
 
-Progress: [█░░░░░░░░░] 10%
+Progress: [██░░░░░░░░] 20%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 1
+- Total plans completed: 2
 - Average duration: 2 min
-- Total execution time: 0.03 hours
+- Total execution time: 0.07 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 1 — Foundation | 1 | 2 min | 2 min |
+| 1 — Foundation | 2 | 4 min | 2 min |
 
 **Recent Trend:**
-- Last 5 plans: 2 min
-- Trend: Baseline established
+- Last 5 plans: 2 min, 2 min
+- Trend: Consistent 2 min/plan
 
 *Updated after each plan completion*
 
@@ -51,6 +51,9 @@ Recent decisions affecting current work:
 - 01-01: Grain at 0.04 opacity with SVG feTurbulence fractalNoise baseFrequency 0.65 — felt rather than seen
 - 01-01: GSAP CDN loaded without defer so globals available before type=module main.js script runs
 - 01-01: gallery.json photos array included proactively in each genre so Phase 4 requires no schema change
+- 01-02: pushState does NOT fire popstate per HTML spec — manual CustomEvent dispatch after pushState is essential
+- 01-02: No navigateTo/pushState call on page load — breaks WebKit back button (anti-pattern)
+- 01-02: GSAP accessed as CDN window global, not ES module import — globals guaranteed available before module script runs
 
 ### Pending Todos
 
@@ -64,5 +67,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-01
-Stopped at: Completed 01-01-PLAN.md — HTML scaffold, CSS design system, gallery.json, .htaccess, image folders, test images
+Stopped at: Completed 01-02-PLAN.md — SPA router, state store, main.js entry point
 Resume file: None

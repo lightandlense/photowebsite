@@ -12,7 +12,7 @@ Five phases build the immersive darkroom experience bottom-up: the foundation es
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation** - Project scaffolding, CSS design system, router, state store, and image pipeline spec
+- [x] **Phase 1: Foundation** - Project scaffolding, CSS design system, router, state store, and image pipeline spec (completed 2026-03-01)
 - [ ] **Phase 2: Entrance and Darkroom Scene** - Building exterior walk-in, darkroom clothesline with ambient lighting, and in-world navigation
 - [ ] **Phase 3: Transition Sequences** - Hand-grab animation and camera pull-in from clothesline to filmstrip
 - [ ] **Phase 4: Filmstrip Gallery** - Horizontal filmstrip with all five genres, photo enlarge-in-place, and inline video
@@ -30,7 +30,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. The browser back button after a link click returns to the previous URL state without a blank page
   4. A test image processed through the export spec (WebP + JPEG fallback, under 200KB) is served correctly from the project directory on a local HTTP server
   5. `gallery.json` schema exists with at least one placeholder genre entry and loads without error in the console
-**Plans:** 2 plans
+**Plans:** 2/2 plans complete
 Plans:
 - [x] 01-01-PLAN.md — HTML scaffold, CSS design system, gallery.json, .htaccess, image folders
 - [ ] 01-02-PLAN.md — SPA router, state store, main.js entry point with GSAP init
@@ -87,7 +87,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 1/2 | In progress | - |
+| 1. Foundation | 2/2 | Complete   | 2026-03-01 |
 | 2. Entrance and Darkroom Scene | 0/? | Not started | - |
 | 3. Transition Sequences | 0/? | Not started | - |
 | 4. Filmstrip Gallery | 0/? | Not started | - |
