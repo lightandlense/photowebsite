@@ -193,23 +193,29 @@ export function startReverse() {
   // Prep darkroom to fade back in
   gsap.set(darkroomEl, { display: 'block', opacity: 0 });
 
+  // Store ref before async timeline completes
+  const photoToRestore = activePhotoEl;
+
   const reverseTl = gsap.timeline({
     onComplete: () => {
-      // Restore photo
-      if (activePhotoEl) {
-        activePhotoEl.classList.remove('clothesline__photo--empty');
-        gsap.set(activePhotoEl, { clearProps: 'scale,x,y,rotate,opacity,transform' });
-        const pinEl = activePhotoEl.querySelector('.clothesline__pin');
-        if (pinEl) gsap.set(pinEl, { clearProps: 'y,opacity' });
+      // Restore photo — remove empty class and clear ALL inline styles
+      if (photoToRestore) {
+        photoToRestore.classList.remove('clothesline__photo--empty');
+        gsap.set(photoToRestore, { clearProps: 'all' });
+        // Restore children too
+        const pinEl = photoToRestore.querySelector('.clothesline__pin');
+        if (pinEl) gsap.set(pinEl, { clearProps: 'all' });
+        const imgEl = photoToRestore.querySelector('.clothesline__image');
+        if (imgEl) gsap.set(imgEl, { clearProps: 'all' });
       }
 
       // Hide gallery
       galleryEl.classList.remove('gallery--visible');
       gsap.set(galleryEl, { display: 'none', opacity: 0 });
 
-      // Resume CSS sway
+      // Resume CSS sway on ALL photos
       document.querySelectorAll('.clothesline__photo').forEach((el) => {
-        el.style.animationPlayState = 'running';
+        el.style.animationPlayState = '';
       });
 
       // Reset state
