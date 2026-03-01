@@ -88,13 +88,19 @@ export function startForward(genre, photoEl) {
   gsap.set(galleryEl, { display: 'flex', opacity: 0 });
   gsap.set(darkroomEl, { display: 'block', opacity: 1 });
 
-  // Hand positioning — fingertips at the clothespin
-  const handW = 320;
-  const fingerTipY = 0.05; // fingers near top of image
-  const handTargetX = rect.left + rect.width / 2 - handW / 2;
-  const handTargetY = rect.top - (480 * fingerTipY);
+  // Hand positioning — the pinch point (thumb meets index finger) is at roughly
+  // 35% from left and 15% from top of the hand image (from grasp reference).
+  // We want the pinch to land on the top-left area of the photo.
+  const handSize = 420;
+  const pinchOffsetX = handSize * 0.35; // where the pinch is horizontally in the hand image
+  const pinchOffsetY = handSize * 0.15; // where the pinch is vertically in the hand image
+  // Target: pinch meets the top-left corner area of the photo
+  const photoGrabX = rect.left + rect.width * 0.25; // grab point on the photo (left quarter)
+  const photoGrabY = rect.top; // top edge of photo
+  const handTargetX = photoGrabX - pinchOffsetX;
+  const handTargetY = photoGrabY - pinchOffsetY;
 
-  // Reset hand state
+  // Reset hand state — starts below viewport
   gsap.set(handEl, { display: 'block', left: handTargetX, top: vh + 50, opacity: 1 });
   gsap.set(handOpen, { opacity: 1 });
   gsap.set(handGrab, { opacity: 0 });
