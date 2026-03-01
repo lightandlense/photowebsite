@@ -14,20 +14,80 @@
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/grain.css">
+  <link rel="stylesheet" href="css/entrance.css">
+  <link rel="stylesheet" href="css/darkroom.css">
 </head>
 <body>
 
   <div id="app">
-    <!-- Temporary placeholder — later phases will replace this content -->
-    <h1>Darkroom Portfolio</h1>
-    <p>Foundation loaded.</p>
 
-    <!-- Image pipeline test: WebP + JPEG fallback via picture element -->
-    <picture>
-      <source srcset="images/fashion/test-sample.webp" type="image/webp">
-      <img src="images/fashion/test-sample.jpg" alt="Test image — WebP/JPEG pipeline validation" width="400" height="300" style="margin-top: 1rem; border: 2px solid var(--color-accent); border-radius: 4px;">
-    </picture>
-    <p><small>Image pipeline test: if you see an image above, WebP/JPEG fallback is working.</small></p>
+    <section id="entrance" class="scene">
+      <!-- Parallax layers — each uses a photographic texture from images/entrance/ -->
+      <div class="scene__layer" data-layer="sky" style="z-index: 1"></div>
+      <div class="scene__layer" data-layer="building" style="z-index: 2"></div>
+      <div class="scene__layer" data-layer="door-frame" style="z-index: 3"></div>
+      <div class="scene__layer" data-layer="door" style="z-index: 4" id="door" role="button" tabindex="0" aria-label="Enter the darkroom studio"></div>
+      <div class="scene__layer" data-layer="ground" style="z-index: 5"></div>
+      <!-- Light leak under door -->
+      <div class="entrance__light-leak" style="z-index: 3"></div>
+      <!-- "Step Inside" CTA -->
+      <p class="entrance__cta" style="z-index: 6">Step Inside</p>
+      <!-- Darkness overlay for walk-in transition -->
+      <div class="scene__overlay--darkness" style="z-index: 8"></div>
+    </section>
+
+    <section id="darkroom" class="scene" style="display: none;">
+      <!-- Ambient safe light glow -->
+      <div class="darkroom__safelight"></div>
+
+      <!-- Clothesline wire -->
+      <div class="clothesline">
+        <div class="clothesline__wire"></div>
+        <!-- Five genre photo slots — use colored placeholder divs for now (real photos in Phase 4) -->
+        <figure class="clothesline__photo" data-genre="fashion">
+          <div class="clothesline__pin"></div>
+          <div class="clothesline__image" style="background: linear-gradient(135deg, #8B6914, #C8902A);">
+            <span class="clothesline__genre-label">Fashion</span>
+          </div>
+        </figure>
+        <figure class="clothesline__photo" data-genre="beauty">
+          <div class="clothesline__pin"></div>
+          <div class="clothesline__image" style="background: linear-gradient(135deg, #6B2D5B, #D4698E);">
+            <span class="clothesline__genre-label">Beauty</span>
+          </div>
+        </figure>
+        <figure class="clothesline__photo" data-genre="light-painting">
+          <div class="clothesline__pin"></div>
+          <div class="clothesline__image" style="background: linear-gradient(135deg, #1A3A5C, #4A90D9);">
+            <span class="clothesline__genre-label">Light Painting</span>
+          </div>
+        </figure>
+        <figure class="clothesline__photo" data-genre="drone">
+          <div class="clothesline__pin"></div>
+          <div class="clothesline__image" style="background: linear-gradient(135deg, #2D4A1A, #6B8F3C);">
+            <span class="clothesline__genre-label">Drone</span>
+          </div>
+        </figure>
+        <figure class="clothesline__photo" data-genre="video">
+          <div class="clothesline__pin"></div>
+          <div class="clothesline__image" style="background: linear-gradient(135deg, #4A1A1A, #B83C3C);">
+            <span class="clothesline__genre-label">Video</span>
+          </div>
+        </figure>
+      </div>
+
+      <!-- In-world navigation elements positioned below clothesline -->
+      <div class="nav-element nav-element--silhouette" id="silhouette-figure" role="button" tabindex="0" aria-label="Navigate to About page">
+        <div class="nav-element__image nav-element__image--silhouette"></div>
+        <span class="nav-element__label" id="label-about">About</span>
+      </div>
+
+      <div class="nav-element nav-element--card" id="business-card" role="button" tabindex="0" aria-label="Navigate to Contact page">
+        <div class="nav-element__image nav-element__image--card"></div>
+        <span class="nav-element__label" id="label-contact">Contact</span>
+      </div>
+    </section>
+
   </div>
 
   <!-- GSAP 3.14.2 — loaded before module script so globals are available -->
