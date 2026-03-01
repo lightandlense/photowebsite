@@ -58,7 +58,9 @@ Plans:
   1. Clicking a clothesline photo triggers a hand entering the frame, grasping the clothespin, and the photo releasing — the animation reads as physically removing a photograph
   2. Immediately after the hand-grab, the camera pulls into the selected photo in a continuous motion that dissolves into the filmstrip gallery view — no hard cut or blank frame visible
   3. The reverse pull-out animation plays when the user navigates back from the filmstrip to the darkroom — the clothesline reappears with the selected photo absent from its pin
-**Plans**: TBD
+**Plans:** 1 plan
+Plans:
+- [ ] 03-01-PLAN.md — Hand-grab animation, camera pull-in, reverse transition, darkroom/main.js wiring
 
 ### Phase 4: Filmstrip Gallery
 **Goal**: Visitors can scroll through a horizontal filmstrip of photographs per genre, see photos enlarge in-place on hover, and watch video thumbnails play inline — for all five genres
@@ -92,6 +94,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete   | 2026-03-01 |
 | 2. Entrance and Darkroom Scene | 2/2 | Complete   | 2026-03-01 |
-| 3. Transition Sequences | 0/? | Not started | - |
+| 3. Transition Sequences | 0/1 | In progress | - |
 | 4. Filmstrip Gallery | 0/? | Not started | - |
 | 5. Pages and Performance | 0/? | Not started | - |
