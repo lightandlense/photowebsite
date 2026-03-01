@@ -2,13 +2,13 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: unknown
-last_updated: "2026-03-01T16:38:25.816Z"
+status: in_progress
+last_updated: "2026-03-01T23:50:00Z"
 progress:
-  total_phases: 3
-  completed_phases: 3
-  total_plans: 5
-  completed_plans: 5
+  total_phases: 5
+  completed_phases: 4
+  total_plans: 8
+  completed_plans: 6
 ---
 
 # Project State
@@ -18,16 +18,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-02-28)
 
 **Core value:** Visitors feel like they've stepped into a darkroom and are interacting with physical photographs — the immersion is what makes this portfolio memorable and converts visitors into clients.
-**Current focus:** Phase 3 — Photo Interaction (hand-grab transition)
+**Current focus:** Phase 5 — Pages and Performance
 
 ## Current Position
 
-Phase: 3 of 5 (Transition Sequences) — IN PROGRESS
-Plan: 1 of 1 in phase 3 — COMPLETE
-Status: Phase 3 complete, ready for Phase 4
-Last activity: 2026-03-01 — Plan 03-01 complete
+Phase: 5 of 5 (Pages and Performance) — IN PROGRESS
+Plan: 1 of 2 in phase 5 — COMPLETE
+Status: Phase 5 plan 1 complete, ready for plan 2
+Last activity: 2026-03-01 — Plan 05-01 complete
 
-Progress: [██████░░░░] 60%
+Progress: [████████░░] 75%
 
 ## Performance Metrics
 
@@ -43,6 +43,8 @@ Progress: [██████░░░░] 60%
 | 1 — Foundation | 2 | 4 min | 2 min |
 | 2 — Entrance and Darkroom Scene | 2 | 5 min | 2.5 min |
 | 3 — Transition Sequences | 1 | 2 min | 2 min |
+| 4 — Filmstrip Gallery | 1 | 2 min | 2 min |
+| 5 — Pages and Performance | 1 | 2 min | 2 min |
 
 **Recent Trend:**
 - Last 5 plans: 2 min, 2 min, 3 min, 2 min, 2 min
@@ -81,6 +83,10 @@ Recent decisions affecting current work:
 - 03-01: Gallery uses .gallery--visible CSS class alongside GSAP display — ensures flexbox centering works reliably
 - 03-01: forwardTl rebuilt per genre click — photo getBoundingClientRect differs per click, must be measured fresh
 - 03-01: navigateTo called in onComplete callback — URL updates only after gallery is visually ready
+- 05-01: pages.js owns activePage state — getActivePage() lets main.js distinguish page-back from other popstate events
+- 05-01: navigateToPage called from darkroom.js (not router) — page transitions are GSAP fades, not raw navigateTo
+- 05-01: About CTA uses <button> not <a> — avoids router link interception conflict on same-origin anchors
+- 05-01: Contact form reset happens inside navigateFromPage — ensures clean state on every visit
 
 ### Pending Todos
 
@@ -93,5 +99,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-01
-Stopped at: Completed 03-01-PLAN.md — hand-grab transition, gallery placeholder, forward/reverse GSAP timeline
+Stopped at: Completed 05-01-PLAN.md — About/Contact page sections, pages.css, pages.js transitions, Formspree form
 Resume file: None

@@ -42,10 +42,10 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Pages
 
-- [ ] **PAGE-01**: About/bio page with photographer's story, maintaining full darkroom aesthetic
-- [ ] **PAGE-02**: Contact form with name, email, project type, and message fields
-- [ ] **PAGE-03**: Contact form submits via Formspree (no server-side code needed)
-- [ ] **PAGE-04**: All pages maintain consistent darkroom aesthetic (dark backgrounds, warm tones, film textures)
+- [x] **PAGE-01**: About/bio page with photographer's story, maintaining full darkroom aesthetic
+- [x] **PAGE-02**: Contact form with name, email, project type, and message fields
+- [x] **PAGE-03**: Contact form submits via Formspree (no server-side code needed)
+- [x] **PAGE-04**: All pages maintain consistent darkroom aesthetic (dark backgrounds, warm tones, film textures)
 
 ### Performance
 
@@ -130,10 +130,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | GLRY-05 | Phase 4 | Pending |
 | GLRY-06 | Phase 4 | Pending |
 | GLRY-07 | Phase 4 | Pending |
-| PAGE-01 | Phase 5 | Pending |
-| PAGE-02 | Phase 5 | Pending |
-| PAGE-03 | Phase 5 | Pending |
-| PAGE-04 | Phase 5 | Pending |
+| PAGE-01 | Phase 5 | Complete |
+| PAGE-02 | Phase 5 | Complete |
+| PAGE-03 | Phase 5 | Complete |
+| PAGE-04 | Phase 5 | Complete |
 | PERF-01 | Phase 5 | Pending |
 | PERF-02 | Phase 5 | Pending |
 | PERF-03 | Phase 5 | Pending |
