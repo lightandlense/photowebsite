@@ -33,7 +33,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans:** 2/2 plans complete
 Plans:
 - [x] 01-01-PLAN.md — HTML scaffold, CSS design system, gallery.json, .htaccess, image folders
-- [ ] 01-02-PLAN.md — SPA router, state store, main.js entry point with GSAP init
+- [x] 01-02-PLAN.md — SPA router, state store, main.js entry point with GSAP init
 
 ### Phase 2: Entrance and Darkroom Scene
 **Goal**: Visitors can walk into the darkroom and see five photographs hanging on a clothesline with clickable in-world navigation to About and Contact
@@ -45,7 +45,10 @@ Plans:
   3. On mobile, the view crops to the door with a clear tap target and the walk-in animation completes without layout breaking
   4. Inside the darkroom, five photographs hang from a clothesline with clothespins, each with a subtle ambient sway; the scene has dim ambient lighting, warm tones, and a film grain texture overlay
   5. Clicking the silhouette figure in the background navigates to the About page route; clicking the business card navigates to the Contact page route; both have always-visible labels
-**Plans**: TBD
+**Plans:** 2 plans
+Plans:
+- [ ] 02-01-PLAN.md — HTML scene structure, entrance CSS layers, darkroom CSS atmosphere and clothesline
+- [ ] 02-02-PLAN.md — Entrance walk-in GSAP timeline, darkroom interactivity, main.js wiring
 
 ### Phase 3: Transition Sequences
 **Goal**: Clicking a clothesline photo plays a hand-grab animation that removes it and then pulls the camera into the image, arriving in the filmstrip gallery
@@ -88,7 +91,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete   | 2026-03-01 |
-| 2. Entrance and Darkroom Scene | 0/? | Not started | - |
+| 2. Entrance and Darkroom Scene | 0/2 | In progress | - |
 | 3. Transition Sequences | 0/? | Not started | - |
 | 4. Filmstrip Gallery | 0/? | Not started | - |
 | 5. Pages and Performance | 0/? | Not started | - |
