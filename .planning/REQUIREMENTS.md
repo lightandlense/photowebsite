@@ -101,13 +101,49 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| *(populated during roadmap creation)* | | |
+| INFR-01 | Phase 1 | Pending |
+| INFR-02 | Phase 1 | Pending |
+| INFR-03 | Phase 1 | Pending |
+| INFR-04 | Phase 1 | Pending |
+| INFR-05 | Phase 1 | Pending |
+| ENTR-01 | Phase 2 | Pending |
+| ENTR-02 | Phase 2 | Pending |
+| ENTR-03 | Phase 2 | Pending |
+| ENTR-04 | Phase 2 | Pending |
+| ENTR-05 | Phase 2 | Pending |
+| ENTR-06 | Phase 2 | Pending |
+| ENTR-07 | Phase 2 | Pending |
+| DARK-01 | Phase 2 | Pending |
+| DARK-02 | Phase 2 | Pending |
+| DARK-03 | Phase 2 | Pending |
+| DARK-04 | Phase 2 | Pending |
+| DARK-07 | Phase 2 | Pending |
+| DARK-08 | Phase 2 | Pending |
+| DARK-09 | Phase 2 | Pending |
+| DARK-10 | Phase 2 | Pending |
+| DARK-05 | Phase 3 | Pending |
+| DARK-06 | Phase 3 | Pending |
+| GLRY-01 | Phase 4 | Pending |
+| GLRY-02 | Phase 4 | Pending |
+| GLRY-03 | Phase 4 | Pending |
+| GLRY-04 | Phase 4 | Pending |
+| GLRY-05 | Phase 4 | Pending |
+| GLRY-06 | Phase 4 | Pending |
+| GLRY-07 | Phase 4 | Pending |
+| PAGE-01 | Phase 5 | Pending |
+| PAGE-02 | Phase 5 | Pending |
+| PAGE-03 | Phase 5 | Pending |
+| PAGE-04 | Phase 5 | Pending |
+| PERF-01 | Phase 5 | Pending |
+| PERF-02 | Phase 5 | Pending |
+| PERF-03 | Phase 5 | Pending |
+| PERF-04 | Phase 5 | Pending |
 
 **Coverage:**
-- v1 requirements: 32 total
-- Mapped to phases: 0
-- Unmapped: 32 ⚠️
+- v1 requirements: 37 total (note: original count of 32 was a miscounting — actual count from requirements list is 37)
+- Mapped to phases: 37
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-02-28*
-*Last updated: 2026-02-28 after initial definition*
+*Last updated: 2026-02-28 — traceability populated after roadmap creation*
