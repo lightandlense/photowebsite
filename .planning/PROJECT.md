@@ -2,7 +2,7 @@
 
 ## What This Is
 
-An immersive photography portfolio website that simulates a darkroom experience. Visitors enter a dimly lit darkroom where five photographs hang from a clothesline on clothespins. Clicking a photo triggers a hand animation that removes it, then the camera pulls into the image revealing a horizontal filmstrip gallery for that genre. The entire site maintains the analog film/darkroom aesthetic across all pages.
+An immersive photography portfolio website that simulates walking into a real darkroom. Visitors first see a photo-realistic old photo studio building exterior, click the door to trigger a parallax walk-in, then enter a dimly lit darkroom where five photographs hang from a clothesline on clothespins. Clicking a photo triggers a hand animation that removes it, then the camera pulls into the image revealing a horizontal filmstrip gallery for that genre. A silhouette figure and business card in the darkroom serve as in-world navigation to About and Contact pages. The entire site maintains the analog film/darkroom aesthetic.
 
 ## Core Value
 
@@ -16,8 +16,11 @@ The site must deliver a "wow" experience — visitors feel like they've stepped 
 
 ### Active
 
+- [ ] Photo-realistic building exterior with parallax walk-in entrance
 - [ ] Darkroom landing page with dim ambient lighting aesthetic
 - [ ] Five photographs displayed on a clothesline with clothespins
+- [ ] Silhouette figure in darkroom background links to About page
+- [ ] Business card on darkroom table links to Contact page
 - [ ] Hand animation that reaches up and removes a photo from the clothespin on click
 - [ ] Pull-in camera transition from clothesline photo into the filmstrip gallery
 - [ ] Horizontal filmstrip gallery that scrolls with user scroll input
@@ -62,6 +65,8 @@ The site must deliver a "wow" experience — visitors feel like they've stepped 
 | Filmstrip as gallery metaphor | Ties to darkroom theme, enables horizontal scroll browsing | — Pending |
 | Inline video playback on filmstrip | Keeps immersion, no modal/overlay breaking the experience | — Pending |
 | Full darkroom aesthetic on all pages | Consistent world-building, not just a gimmick entrance | — Pending |
+| Building exterior as entry point | Adds narrative arc — arriving at a place, not just loading a page | — Pending |
+| In-world navigation (silhouette, business card) | No navbar — About/Contact discovered as objects in the darkroom | — Pending |
 
 ---
-*Last updated: 2026-02-28 after initialization*
+*Last updated: 2026-02-28 after requirements definition*
