@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Darkroom Portfolio</title>
+
+  <!-- Google Fonts — Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Design System CSS (order matters: tokens first) -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/grain.css">
+</head>
+<body>
+
+  <div id="app">
+    <!-- Temporary placeholder — later phases will replace this content -->
+    <h1>Darkroom Portfolio</h1>
+    <p>Foundation loaded.</p>
+
+    <!-- Image pipeline test: WebP + JPEG fallback via picture element -->
+    <picture>
+      <source srcset="images/fashion/test-sample.webp" type="image/webp">
+      <img src="images/fashion/test-sample.jpg" alt="Test image — WebP/JPEG pipeline validation" width="400" height="300" style="margin-top: 1rem; border: 2px solid var(--color-accent); border-radius: 4px;">
+    </picture>
+    <p><small>Image pipeline test: if you see an image above, WebP/JPEG fallback is working.</small></p>
+  </div>
+
+  <!-- GSAP 3.14.2 — loaded before module script so globals are available -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollSmoother.min.js"></script>
+
+  <!-- App entry point (created in Plan 02) -->
+  <script type="module" src="js/main.js"></script>
+
+</body>
+</html>

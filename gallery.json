@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "genres": [
+    {
+      "id": "fashion",
+      "label": "Fashion",
+      "folder": "images/fashion",
+      "clotheslineIndex": 0,
+      "photoCount": 0,
+      "photos": []
+    },
+    {
+      "id": "beauty",
+      "label": "Beauty",
+      "folder": "images/beauty",
+      "clotheslineIndex": 1,
+      "photoCount": 0,
+      "photos": []
+    },
+    {
+      "id": "light-painting",
+      "label": "Light Painting",
+      "folder": "images/light-painting",
+      "clotheslineIndex": 2,
+      "photoCount": 0,
+      "photos": []
+    },
+    {
+      "id": "drone",
+      "label": "Drone",
+      "folder": "images/drone",
+      "clotheslineIndex": 3,
+      "photoCount": 0,
+      "photos": []
+    },
+    {
+      "id": "video",
+      "label": "Video",
+      "folder": "images/video",
+      "clotheslineIndex": 4,
+      "photoCount": 0,
+      "photos": []
+    }
+  ]
+}
