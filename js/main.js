@@ -3,14 +3,14 @@
  *
  * Registers GSAP plugins (loaded as CDN globals before this module runs),
  * initialises the SPA router, loads gallery.json into the state store,
- * and sets up debug logging.
- *
- * Temporary test navigation links are appended to #app so the router
- * can be verified manually in the browser (removed in Phase 2).
+ * initialises the entrance and darkroom scene controllers, and sets up
+ * debug logging.
  */
 
 import { initRouter } from './router.js';
 import { store } from './store.js';
+import { initEntrance } from './entrance.js';
+import { initDarkroom } from './darkroom.js';
 
 // GSAP globals are available via CDN scripts loaded before this module.
 // Do NOT import GSAP — access as window globals.
@@ -41,23 +41,6 @@ async function loadGallery() {
 }
 
 /**
- * Appends temporary test navigation links to #app.
- * These prove the router intercepts clicks and updates the URL bar.
- * Will be removed when Phase 2 builds real navigation.
- */
-function appendTestNav() {
-  const nav = document.createElement('nav');
-  nav.innerHTML = `
-    <a href="/gallery/fashion">Fashion</a> |
-    <a href="/gallery/beauty">Beauty</a> |
-    <a href="/about">About</a> |
-    <a href="/contact">Contact</a>
-  `;
-  nav.style.cssText = 'margin-top: 2rem; font-size: var(--font-size-lg);';
-  document.getElementById('app').appendChild(nav);
-}
-
-/**
  * Main init function — wires together all app subsystems.
  */
 async function init() {
@@ -72,7 +55,9 @@ async function init() {
   // Set initial route from current URL (do NOT call navigateTo — breaks WebKit back button)
   store.set({ currentRoute: window.location.pathname });
 
-  appendTestNav();
+  // Initialize scenes
+  initEntrance();  // CTA fade-in, door hover, walk-in timeline
+  initDarkroom();  // Wire darkroom hover glows and nav click handlers (photos reveal later)
 }
 
 // Listen for route changes and log them
