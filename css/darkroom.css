@@ -1,85 +1,80 @@
 /* darkroom.css — Darkroom interior scene styles
- * Depends on: css/tokens.css (for CSS custom properties)
- * The #darkroom section starts as display: none (set inline in HTML)
- * and is revealed by GSAP during the walk-in transition.
+ * Photo background (darkroom-bg.png) with CSS clothesline photos
+ * Depends on: css/tokens.css
  */
 
 /* ============================================================
-   Darkroom atmosphere — DARK-01
+   Darkroom atmosphere
    ============================================================ */
 
 #darkroom {
   background: var(--color-bg);
 }
 
-/* Blurred photographic darkroom background */
+/* Photographic darkroom background — shelves, bottles, trays */
 .darkroom__background {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('../images/darkroom/darkroom-bg.jpg');
+  inset: 0;
+  background-image: url('../images/darkroom/darkroom-bg.png');
   background-size: cover;
   background-position: center;
   background-color: var(--color-bg);
+  filter: blur(1px) brightness(0.45);
   z-index: 0;
 }
 
-/* Warm amber safe light — classic darkroom glow from upper-left */
+/* Red/amber safelight overlay */
 .darkroom__safelight {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 45%;
-  height: 55%;
-  background: radial-gradient(
-    ellipse at top left,
-    rgba(255, 140, 0, 0.15) 0%,
-    rgba(200, 100, 20, 0.06) 40%,
-    transparent 70%
-  );
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse at 30% 15%,
+      rgba(200, 60, 20, 0.2) 0%,
+      rgba(180, 80, 20, 0.1) 30%,
+      transparent 65%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(160, 40, 10, 0.08) 0%,
+      rgba(120, 30, 10, 0.05) 100%
+    );
   pointer-events: none;
   z-index: 1;
 }
 
 /* ============================================================
-   Clothesline — DARK-03
-   Two clotheslines: 3 photos on top, 2 on bottom
+   Clothesline
    ============================================================ */
 
 .clothesline {
   position: absolute;
-  left: 5%;
-  right: 5%;
+  left: 0;
+  right: 0;
   z-index: 2;
 }
 
 .clothesline--top {
-  top: 8%;
-  height: 45%;
+  top: 6%;
+  height: 46%;
 }
 
 .clothesline--bottom {
   top: 52%;
-  height: 40%;
+  height: 42%;
 }
 
+/* Wire with catenary sag */
 .clothesline__wire {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 2px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(232, 213, 176, 0.3) 10%,
-    rgba(232, 213, 176, 0.4) 50%,
-    rgba(232, 213, 176, 0.3) 90%,
-    transparent
-  );
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  height: 35px;
+  border: none;
+  border-bottom: 2px solid rgba(232, 213, 176, 0.45);
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
 }
 
 .clothesline__photo {
@@ -93,27 +88,35 @@
   margin: 0;
   padding: 0;
   border: none;
+  opacity: 0; /* hidden until revealDarkroom animates them in */
 }
 
-/* Top clothesline: 3 photos spread across */
-.clothesline--top .clothesline__photo:nth-child(2) { left: 10%; }
-.clothesline--top .clothesline__photo:nth-child(3) { left: 40%; }
-.clothesline--top .clothesline__photo:nth-child(4) { left: 70%; }
+/* Top clothesline: 5 photos */
+.clothesline--top .clothesline__photo:nth-child(2) { left: 5%; }
+.clothesline--top .clothesline__photo:nth-child(3) { left: 23%; }
+.clothesline--top .clothesline__photo:nth-child(4) { left: 42%; }
+.clothesline--top .clothesline__photo:nth-child(5) { left: 60%; }
+.clothesline--top .clothesline__photo:nth-child(6) { left: 78%; }
 
-/* Bottom clothesline: 2 photos centered */
-.clothesline--bottom .clothesline__photo:nth-child(2) { left: 20%; }
-.clothesline--bottom .clothesline__photo:nth-child(3) { left: 58%; }
+/* Bottom clothesline: 4 photos */
+.clothesline--bottom .clothesline__photo:nth-child(2) { left: 10%; }
+.clothesline--bottom .clothesline__photo:nth-child(3) { left: 33%; }
+.clothesline--bottom .clothesline__photo:nth-child(4) { left: 55%; }
+.clothesline--bottom .clothesline__photo:nth-child(5) { left: 76%; }
 
-/* Staggered heights for organic feel */
-.clothesline--top .clothesline__photo:nth-child(2) { top: 4px; }
-.clothesline--top .clothesline__photo:nth-child(3) { top: -2px; }
-.clothesline--top .clothesline__photo:nth-child(4) { top: 5px; }
-.clothesline--bottom .clothesline__photo:nth-child(2) { top: 3px; }
-.clothesline--bottom .clothesline__photo:nth-child(3) { top: -1px; }
+/* Photos follow the catenary sag */
+.clothesline--top .clothesline__photo:nth-child(2) { top: 6px; }
+.clothesline--top .clothesline__photo:nth-child(3) { top: 20px; }
+.clothesline--top .clothesline__photo:nth-child(4) { top: 30px; }
+.clothesline--top .clothesline__photo:nth-child(5) { top: 26px; }
+.clothesline--top .clothesline__photo:nth-child(6) { top: 12px; }
+.clothesline--bottom .clothesline__photo:nth-child(2) { top: 10px; }
+.clothesline--bottom .clothesline__photo:nth-child(3) { top: 26px; }
+.clothesline--bottom .clothesline__photo:nth-child(4) { top: 26px; }
+.clothesline--bottom .clothesline__photo:nth-child(5) { top: 12px; }
 
 /* ============================================================
-   Sway animation — DARK-04
-   Subtle ambient sway — noticed if you stare, not actively distracting
+   Sway animation
    ============================================================ */
 
 @keyframes sway {
@@ -126,24 +129,39 @@
   will-change: rotate;
 }
 
-/* Staggered durations and delays for organic, non-synchronized feel */
 .clothesline--top .clothesline__photo:nth-child(2) { animation-duration: 4.8s; animation-delay: -0.5s; }
-.clothesline--top .clothesline__photo:nth-child(3) { animation-duration: 5.2s; animation-delay: -1.2s; }
-.clothesline--top .clothesline__photo:nth-child(4) { animation-duration: 4.6s; animation-delay: -0.8s; }
+.clothesline--top .clothesline__photo:nth-child(3) { animation-duration: 5.3s; animation-delay: -1.2s; }
+.clothesline--top .clothesline__photo:nth-child(4) { animation-duration: 5.0s; animation-delay: -0.3s; }
+.clothesline--top .clothesline__photo:nth-child(5) { animation-duration: 4.6s; animation-delay: -2.0s; }
+.clothesline--top .clothesline__photo:nth-child(6) { animation-duration: 5.4s; animation-delay: -0.8s; }
 .clothesline--bottom .clothesline__photo:nth-child(2) { animation-duration: 5.5s; animation-delay: -1.8s; }
 .clothesline--bottom .clothesline__photo:nth-child(3) { animation-duration: 4.9s; animation-delay: -0.3s; }
+.clothesline--bottom .clothesline__photo:nth-child(4) { animation-duration: 5.2s; animation-delay: -1.0s; }
+.clothesline--bottom .clothesline__photo:nth-child(5) { animation-duration: 4.7s; animation-delay: -2.2s; }
 
 /* ============================================================
    Clothespin
    ============================================================ */
 
 .clothesline__pin {
-  width: 8px;
-  height: 20px;
-  background: linear-gradient(to bottom, #8B7355, #6B5335);
-  border-radius: 2px 2px 0 0;
+  width: 12px;
+  height: 24px;
+  background: linear-gradient(to right, #C4A46A, #A88B50, #C4A46A);
+  border-radius: 3px 3px 1px 1px;
   position: relative;
   z-index: 1;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.clothesline__pin::before {
+  content: '';
+  position: absolute;
+  top: 40%;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  background: rgba(80, 60, 30, 0.5);
+  border-radius: 1px;
 }
 
 .clothesline__pin::after {
@@ -153,181 +171,100 @@
   left: 50%;
   transform: translateX(-50%);
   width: 2px;
-  height: 6px;
-  background: var(--color-bg);
+  height: 8px;
+  background: rgba(20, 15, 10, 0.4);
 }
 
 /* ============================================================
-   Photo placeholder image — darkroom red/sepia tint
-   Photos appear as if developing under safe light
-   On hover, they reveal full color
+   Photo image — white print border, darkroom tint
+   Vignette overlay makes gradients feel more photographic
    ============================================================ */
 
 .clothesline__image {
-  width: 180px;
-  height: 240px;
-  border: 2px solid rgba(232, 213, 176, 0.15);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  width: 160px;
+  height: 210px;
+  border: 6px solid rgba(245, 240, 230, 0.85);
+  border-bottom-width: 22px;
+  border-radius: 1px;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding-bottom: 8px;
+  padding-bottom: 0;
   position: relative;
-  /* Darkroom red/sepia tint — like a developing negative under safe light */
   filter: sepia(0.8) saturate(1.5) hue-rotate(-15deg) brightness(0.7);
   transition: filter 0.8s ease;
 }
 
-/* Reveal full color on hover */
+/* Vignette overlay — darkened edges like a real photograph */
+.clothesline__image::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 40%,
+    transparent 30%,
+    rgba(0, 0, 0, 0.35) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
 .clothesline__photo:hover .clothesline__image {
   filter: sepia(0) saturate(1) hue-rotate(0deg) brightness(1);
 }
 
 .clothesline__genre-label {
   font-family: var(--font-serif);
-  font-size: 0.65rem;
-  color: var(--color-text);
-  opacity: 0.7;
+  font-size: 0.6rem;
+  color: #3a3530;
+  opacity: 0.8;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  position: absolute;
+  bottom: -17px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 1;
 }
 
 /* ============================================================
-   In-world navigation elements — DARK-07 through DARK-10
-   Silhouette: person standing in background (About)
-   Business card: on a table surface in background (Contact)
+   Decorative photos — no interaction
    ============================================================ */
 
-.nav-element {
-  position: absolute;
-  cursor: pointer;
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.clothesline__photo--decorative {
+  cursor: default;
 }
 
-/* Person silhouette — standing in background, left side */
-.nav-element--silhouette {
-  bottom: 4%;
-  left: 5%;
-}
-
-/* Business card on table — right side background */
-.nav-element--card {
-  bottom: 4%;
-  right: 5%;
-}
-
-.nav-element__image {
-  width: 60px;
-  height: 100px;
-}
-
-/* Person figure — taller, more visible as a background element */
-.nav-element__image--silhouette {
-  width: 50px;
-  height: 120px;
-  background: #0a0806;
-  clip-path: polygon(
-    50% 0%,
-    62% 5%, 65% 12%, 62% 20%,
-    55% 22%, 65% 35%, 70% 60%, 65% 100%,
-    55% 100%, 52% 65%, 48% 65%, 45% 100%,
-    35% 100%, 30% 60%, 35% 35%, 45% 22%,
-    38% 20%, 35% 12%, 38% 5%
-  );
-  opacity: 0.6;
-}
-
-/* Table surface under the business card */
-.nav-element__image--table {
-  width: 120px;
-  height: 12px;
-  background: linear-gradient(to bottom, #2a1e14, #1a1208);
-  border-radius: 1px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-  margin-bottom: -2px;
-}
-
-/* Business card sitting on the table */
-.nav-element__image--card {
-  width: 80px;
-  height: 50px;
-  background: linear-gradient(135deg, #3a3020, #2a2018);
-  border: 1px solid rgba(200, 144, 42, 0.3);
-  border-radius: 3px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  position: relative;
-}
-
-.nav-element__image--card::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 15%;
-  right: 15%;
-  height: 1px;
-  background: rgba(232, 213, 176, 0.2);
-}
-
-/* Labels — always visible at reduced opacity */
-.nav-element__label {
-  display: block;
-  font-family: var(--font-serif);
-  font-size: 0.7rem;
-  color: var(--color-text);
-  opacity: 0.5;
-  text-align: center;
-  margin-top: 0.5rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+.clothesline__photo--decorative:hover .clothesline__image {
+  filter: sepia(0.8) saturate(1.5) hue-rotate(-15deg) brightness(0.7);
 }
 
 /* ============================================================
-   Mobile responsive for darkroom
+   Mobile responsive
    ============================================================ */
 
 @media (max-width: 768px) {
   .clothesline__image {
-    width: 110px;
-    height: 150px;
+    width: 100px;
+    height: 135px;
+    border-width: 4px;
+    border-bottom-width: 16px;
   }
 
-  .clothesline--top {
-    top: 5%;
-    left: 2%;
-    right: 2%;
+  .clothesline--top { top: 5%; }
+  .clothesline--bottom { top: 50%; }
+
+  .clothesline__genre-label {
+    font-size: 0.5rem;
+    bottom: -12px;
   }
 
-  .clothesline--bottom {
-    top: 50%;
-    left: 2%;
-    right: 2%;
-  }
-
-  .nav-element--silhouette {
-    left: 3%;
-    bottom: 2%;
-  }
-
-  .nav-element--card {
-    right: 3%;
-    bottom: 2%;
-  }
-
-  .nav-element__image--silhouette {
-    width: 35px;
-    height: 85px;
-  }
-
-  .nav-element__image--table {
-    width: 80px;
-    height: 8px;
-  }
-
-  .nav-element__image--card {
-    width: 60px;
-    height: 38px;
+  .clothesline__pin {
+    width: 8px;
+    height: 18px;
   }
 }

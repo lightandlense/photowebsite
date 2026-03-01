@@ -22,77 +22,76 @@
   <div id="app">
 
     <section id="entrance" class="scene">
-      <!-- Parallax layers — each uses a photographic texture from images/entrance/ -->
-      <div class="scene__layer" data-layer="sky" style="z-index: 1"></div>
-      <div class="scene__layer" data-layer="building" style="z-index: 2"></div>
-      <div class="scene__layer" data-layer="door-frame" style="z-index: 3"></div>
-      <div class="scene__layer" data-layer="door" style="z-index: 4" id="door" role="button" tabindex="0" aria-label="Enter the darkroom studio"></div>
-      <div class="scene__layer" data-layer="ground" style="z-index: 5"></div>
-      <!-- Light leak under door -->
-      <div class="entrance__light-leak" style="z-index: 3"></div>
-      <!-- "Step Inside" CTA -->
-      <p class="entrance__cta" style="z-index: 6">Step Inside</p>
-      <!-- Darkness overlay for walk-in transition -->
+      <!-- Illustrated building entrance -->
+      <div class="scene__layer" data-layer="building" style="z-index: 1"></div>
+      <div class="scene__layer" data-layer="door" style="z-index: 2" id="door" role="button" tabindex="0" aria-label="Enter the darkroom studio"></div>
+      <div class="entrance__step-inside" style="z-index: 3">Step Inside</div>
       <div class="scene__overlay--darkness" style="z-index: 8"></div>
     </section>
 
     <section id="darkroom" class="scene" style="display: none;">
-      <!-- Blurred photographic darkroom background -->
+      <!-- Photographic darkroom background (no photos in image) -->
       <div class="darkroom__background"></div>
-      <!-- Ambient safe light glow -->
       <div class="darkroom__safelight"></div>
 
-      <!-- Top clothesline — 3 photos -->
+      <!-- Top clothesline — 5 photos (3 genre + 2 decorative) -->
       <div class="clothesline clothesline--top">
         <div class="clothesline__wire"></div>
         <figure class="clothesline__photo" data-genre="fashion">
           <div class="clothesline__pin"></div>
-          <div class="clothesline__image" style="background: linear-gradient(135deg, #8B6914, #C8902A);">
+          <div class="clothesline__image" style="background: linear-gradient(180deg, #4a3520 0%, #8B6914 25%, #C8902A 50%, #6a4a1a 75%, #3a2510 100%);">
             <span class="clothesline__genre-label">Fashion</span>
           </div>
         </figure>
+        <figure class="clothesline__photo clothesline__photo--decorative">
+          <div class="clothesline__pin"></div>
+          <div class="clothesline__image" style="background: linear-gradient(175deg, #1a1814 0%, #3a3028 20%, #2a2218 40%, #4a3e30 65%, #1e1a14 100%);"></div>
+        </figure>
         <figure class="clothesline__photo" data-genre="beauty">
           <div class="clothesline__pin"></div>
-          <div class="clothesline__image" style="background: linear-gradient(135deg, #6B2D5B, #D4698E);">
+          <div class="clothesline__image" style="background: linear-gradient(180deg, #3a1830 0%, #6B2D5B 30%, #D4698E 55%, #8a4060 75%, #2a1020 100%);">
             <span class="clothesline__genre-label">Beauty</span>
           </div>
         </figure>
+        <figure class="clothesline__photo clothesline__photo--decorative">
+          <div class="clothesline__pin"></div>
+          <div class="clothesline__image" style="background: linear-gradient(170deg, #1c1c20 0%, #2e2a24 25%, #3a3630 50%, #22201c 75%, #18161a 100%);"></div>
+        </figure>
         <figure class="clothesline__photo" data-genre="light-painting">
           <div class="clothesline__pin"></div>
-          <div class="clothesline__image" style="background: linear-gradient(135deg, #1A3A5C, #4A90D9);">
+          <div class="clothesline__image" style="background: linear-gradient(180deg, #0a1a2e 0%, #1A3A5C 25%, #4A90D9 50%, #2a5080 75%, #0e1e30 100%);">
             <span class="clothesline__genre-label">Light Painting</span>
           </div>
         </figure>
       </div>
 
-      <!-- Bottom clothesline — 2 photos -->
+      <!-- Bottom clothesline — 4 photos (2 genre + 2 nav) -->
       <div class="clothesline clothesline--bottom">
         <div class="clothesline__wire"></div>
         <figure class="clothesline__photo" data-genre="drone">
           <div class="clothesline__pin"></div>
-          <div class="clothesline__image" style="background: linear-gradient(135deg, #2D4A1A, #6B8F3C);">
+          <div class="clothesline__image" style="background: linear-gradient(180deg, #4a6a30 0%, #6B8F3C 20%, #8aaa50 40%, #2D4A1A 65%, #1a2e10 100%);">
             <span class="clothesline__genre-label">Drone</span>
+          </div>
+        </figure>
+        <figure class="clothesline__photo" data-nav="about" role="button" tabindex="0" aria-label="Navigate to About page">
+          <div class="clothesline__pin"></div>
+          <div class="clothesline__image" style="background: linear-gradient(180deg, #2a2018 0%, #5a4430 25%, #6B5030 45%, #3A2A1A 70%, #1a1410 100%);">
+            <span class="clothesline__genre-label">About Me</span>
+          </div>
+        </figure>
+        <figure class="clothesline__photo" data-nav="contact" role="button" tabindex="0" aria-label="Navigate to Contact page">
+          <div class="clothesline__pin"></div>
+          <div class="clothesline__image" style="background: linear-gradient(180deg, #0e1a28 0%, #1A2A3A 25%, #405868 45%, #305060 70%, #0a1420 100%);">
+            <span class="clothesline__genre-label">Contact</span>
           </div>
         </figure>
         <figure class="clothesline__photo" data-genre="video">
           <div class="clothesline__pin"></div>
-          <div class="clothesline__image" style="background: linear-gradient(135deg, #4A1A1A, #B83C3C);">
+          <div class="clothesline__image" style="background: linear-gradient(180deg, #2a0e0e 0%, #4A1A1A 20%, #B83C3C 45%, #7a2828 70%, #1a0808 100%);">
             <span class="clothesline__genre-label">Video</span>
           </div>
         </figure>
-      </div>
-
-      <!-- In-world navigation — person in background (About) -->
-      <div class="nav-element nav-element--silhouette" id="silhouette-figure" role="button" tabindex="0" aria-label="Navigate to About page">
-        <div class="nav-element__image nav-element__image--silhouette"></div>
-        <span class="nav-element__label" id="label-about">About</span>
-      </div>
-
-      <!-- In-world navigation — business card on table (Contact) -->
-      <div class="nav-element nav-element--card" id="business-card" role="button" tabindex="0" aria-label="Navigate to Contact page">
-        <div class="nav-element__image nav-element__image--table"></div>
-        <div class="nav-element__image nav-element__image--card"></div>
-        <span class="nav-element__label" id="label-contact">Contact</span>
       </div>
     </section>
 
