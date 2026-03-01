@@ -13,6 +13,7 @@ import { initEntrance } from './entrance.js';
 import { initDarkroom } from './darkroom.js';
 import { startReverse } from './transition.js';
 import { initGallery } from './gallery.js';
+import { initPages, getActivePage, navigateFromPage } from './pages.js';
 
 // GSAP globals are available via CDN scripts loaded before this module.
 // Do NOT import GSAP — access as window globals.
@@ -61,6 +62,7 @@ async function init() {
   initEntrance();  // CTA fade-in, door hover, walk-in timeline
   initDarkroom();  // Wire darkroom hover glows and nav click handlers (photos reveal later)
   initGallery();   // Filmstrip gallery module (builds on demand via transition.js)
+  initPages();     // Wire page back buttons and contact form handler
 
   // Gallery back button — triggers history.back() so popstate fires and startReverse() runs
   const galleryBack = document.getElementById('gallery-back');
@@ -75,9 +77,20 @@ async function init() {
 window.addEventListener('route:change', (e) => {
   console.log(`[main] Route changed: ${e.detail.path} (${e.detail.trigger})`);
 
-  // Reverse transition: browser back from gallery = return to darkroom
-  if (e.detail.trigger === 'popstate' && !e.detail.path.startsWith('/gallery/')) {
+  if (e.detail.trigger !== 'popstate') return;
+
+  const path = e.detail.path;
+
+  // If we're in gallery view and navigating away, reverse gallery transition
+  if (store.get().currentGenre && !path.startsWith('/gallery/')) {
     startReverse();
+    return;
+  }
+
+  // If we're on a page (About/Contact) and navigating away, reverse page transition
+  if (getActivePage()) {
+    navigateFromPage();
+    return;
   }
 });
 

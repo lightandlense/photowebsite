@@ -13,8 +13,8 @@
  * Exports: { initDarkroom, revealDarkroom }
  */
 
-import { navigateTo } from './router.js';
 import { startForward } from './transition.js';
+import { navigateToPage } from './pages.js';
 
 /**
  * Initialises darkroom interactivity — called once on page load.
@@ -52,11 +52,10 @@ export function initDarkroom() {
     });
 
     if (nav) {
-      // Nav photo click — navigate via router
-      const route = nav === 'about' ? '/about' : '/contact';
-      photo.addEventListener('click', () => navigateTo(route));
+      // Nav photo click — fade transition to page via pages.js
+      photo.addEventListener('click', () => navigateToPage(nav));
       photo.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') navigateTo(route);
+        if (e.key === 'Enter') navigateToPage(nav);
       });
     } else {
       // Genre photo click — triggers hand-grab transition
