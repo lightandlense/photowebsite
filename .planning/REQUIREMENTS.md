@@ -1,0 +1,113 @@
+# Requirements: Darkroom Portfolio
+
+**Defined:** 2026-02-28
+**Core Value:** The site must deliver an immersive darkroom experience that wows visitors and converts them into booking clients.
+
+## v1 Requirements
+
+Requirements for initial release. Each maps to roadmap phases.
+
+### Entrance
+
+- [ ] **ENTR-01**: Visitor sees a photo-realistic old photo studio building exterior on page load
+- [ ] **ENTR-02**: Warm light leaks from under the studio door, inviting entry
+- [ ] **ENTR-03**: "Step Inside" text fades in near the door after a short delay
+- [ ] **ENTR-04**: Door handle/frame glows warmly on hover with cursor change
+- [ ] **ENTR-05**: Clicking the door triggers a parallax walk-in animation (layered ground/building shift)
+- [ ] **ENTR-06**: Door opens and fades into the darkroom interior
+- [ ] **ENTR-07**: On mobile, view is cropped to focus on the door area with clear tap target
+
+### Darkroom
+
+- [ ] **DARK-01**: Darkroom scene has dim ambient lighting with warm tones
+- [ ] **DARK-02**: Film grain texture overlay on the darkroom scene
+- [ ] **DARK-03**: Five genre photographs displayed hanging from a clothesline with clothespins
+- [ ] **DARK-04**: Clothesline photos have subtle ambient sway animation
+- [ ] **DARK-05**: Clicking a photo triggers a hand-grab animation that removes it from the clothespin
+- [ ] **DARK-06**: Camera pulls into the selected photo (pull-in transition) leading to the filmstrip gallery
+- [ ] **DARK-07**: Silhouette figure visible in the darkroom background — click navigates to About page
+- [ ] **DARK-08**: Silhouette has a small always-visible "About" label near it
+- [ ] **DARK-09**: Business card on the darkroom table — click navigates to Contact page
+- [ ] **DARK-10**: Business card has a small always-visible "Contact" label near it
+
+### Gallery
+
+- [ ] **GLRY-01**: Horizontal filmstrip with sprocket holes that scrolls with user scroll input
+- [ ] **GLRY-02**: Filmstrip contains 10-25 photos per genre
+- [ ] **GLRY-03**: Photos enlarge in-place when user hovers or stops scrolling on them
+- [ ] **GLRY-04**: Themed back button returns visitor from filmstrip to darkroom clothesline
+- [ ] **GLRY-05**: Five genres: Fashion, Beauty, Light Painting, Drone, Video
+- [ ] **GLRY-06**: Video genre thumbnails play inline when hovered/stopped on
+- [ ] **GLRY-07**: Videos are self-hosted on the server
+
+### Pages
+
+- [ ] **PAGE-01**: About/bio page with photographer's story, maintaining full darkroom aesthetic
+- [ ] **PAGE-02**: Contact form with name, email, project type, and message fields
+- [ ] **PAGE-03**: Contact form submits via Formspree (no server-side code needed)
+- [ ] **PAGE-04**: All pages maintain consistent darkroom aesthetic (dark backgrounds, warm tones, film textures)
+
+### Performance
+
+- [ ] **PERF-01**: Site loads in under 3 seconds on broadband
+- [ ] **PERF-02**: Images served as optimized WebP with JPEG fallback
+- [ ] **PERF-03**: Lazy loading for filmstrip images (only load current genre)
+- [ ] **PERF-04**: Clothesline thumbnail images preloaded on initial page load
+
+### Infrastructure
+
+- [ ] **INFR-01**: Static site (HTML/CSS/JS) — no server-side runtime required
+- [ ] **INFR-02**: Deployable on traditional cPanel/shared hosting
+- [ ] **INFR-03**: Browser history integration (back/forward buttons work with animated transitions)
+- [ ] **INFR-04**: Works on modern browsers (Chrome, Safari, Firefox, Edge)
+- [ ] **INFR-05**: Responsive — functions on mobile with adapted interactions (tap instead of hover)
+
+## v2 Requirements
+
+Deferred to future release. Tracked but not in current roadmap.
+
+### Polish
+
+- **PLSH-01**: Custom cursor that morphs on hover over interactive elements
+- **PLSH-02**: Preloader / initial reveal animation (film leader countdown)
+- **PLSH-03**: `prefers-reduced-motion` fallback for accessibility
+- **PLSH-04**: Ambient sound toggle (darkroom audio atmosphere)
+
+### SEO
+
+- **SEO-01**: Open Graph meta tags on every page
+- **SEO-02**: Image alt text on all photos
+- **SEO-03**: sitemap.xml with image sitemap
+- **SEO-04**: JSON-LD schema (LocalBusiness + ImageGallery)
+
+## Out of Scope
+
+| Feature | Reason |
+|---------|--------|
+| Print shop / e-commerce | Requires backend infrastructure; scope creep for v1 |
+| CMS / admin panel | Static site — manage photos by editing files directly |
+| Blog | Adds maintenance burden with no clear conversion benefit |
+| OAuth / user accounts | No login needed for a portfolio |
+| Social media feed embeds | Hurts performance, goes stale, external dependencies |
+| Lightbox / modal overlays | Breaks the filmstrip metaphor — enlarge in-place instead |
+| Standard navigation bar | Destroys darkroom illusion — use minimal themed UI instead |
+| Pricing page | Invites price shopping before establishing value |
+| Infinite scroll / masonry grid | Expected and forgettable — filmstrip is the differentiator |
+| Mobile app | Web only |
+
+## Traceability
+
+Which phases cover which requirements. Updated during roadmap creation.
+
+| Requirement | Phase | Status |
+|-------------|-------|--------|
+| *(populated during roadmap creation)* | | |
+
+**Coverage:**
+- v1 requirements: 32 total
+- Mapped to phases: 0
+- Unmapped: 32 ⚠️
+
+---
+*Requirements defined: 2026-02-28*
+*Last updated: 2026-02-28 after initial definition*
