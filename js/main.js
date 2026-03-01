@@ -74,9 +74,7 @@ window.addEventListener('route:change', (e) => {
   console.log(`[main] Route changed: ${e.detail.path} (${e.detail.trigger})`);
 
   // Reverse transition: browser back from gallery = return to darkroom
-  const path = e.detail.path;
-  const isRoot = path === '/' || path === '/index.html' || !path.startsWith('/gallery/');
-  if (e.detail.trigger === 'popstate' && isRoot && store.get().transitionInProgress === false && store.get().currentGenre) {
+  if (e.detail.trigger === 'popstate' && !e.detail.path.startsWith('/gallery/')) {
     startReverse();
   }
 });
