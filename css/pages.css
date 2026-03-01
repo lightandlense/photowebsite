@@ -1,0 +1,246 @@
+/* ============================================================
+   pages.css — About and Contact page styles
+   Darkroom Portfolio — Phase 5 Pages and Performance
+   ============================================================
+   Inherits design tokens from tokens.css.
+   Both page sections maintain the darkroom aesthetic:
+   dark backgrounds, warm accent tones, Playfair Display serif.
+   ============================================================ */
+
+/* ---- Shared Page Layout ---- */
+
+.page__inner {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Back button — styled to match .gallery__back in gallery.css */
+.page__back {
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 100;
+  background: transparent;
+  border: 1px solid rgba(200, 144, 42, 0.4);
+  color: var(--color-text);
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: border-color var(--duration-fast), color var(--duration-fast);
+}
+
+.page__back:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* ---- About Page ---- */
+
+.about__content {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-top: 2rem;
+}
+
+.about__portrait {
+  flex-shrink: 0;
+}
+
+.about__portrait-placeholder {
+  width: 250px;
+  height: 320px;
+  background: rgba(36, 26, 14, 0.6);
+  border: 1px solid rgba(200, 144, 42, 0.2);
+  border-radius: 3px;
+}
+
+.about__heading {
+  font-family: var(--font-serif);
+  color: var(--color-accent);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.about__bio {
+  color: var(--color-text);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+}
+
+.about__footer {
+  margin-top: auto;
+  padding-top: 2rem;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.about__cta {
+  background: rgba(200, 144, 42, 0.15);
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  padding: 0.6rem 1.5rem;
+  font-family: var(--font-serif);
+  font-size: inherit;
+  border-radius: 3px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background var(--duration-fast);
+}
+
+.about__cta:hover {
+  background: rgba(200, 144, 42, 0.3);
+}
+
+.about__socials {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.about__social-link {
+  color: var(--color-text);
+  opacity: 0.6;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: opacity var(--duration-fast), color var(--duration-fast);
+}
+
+.about__social-link:hover {
+  opacity: 1;
+  color: var(--color-accent);
+}
+
+/* Mobile — stack portrait above text */
+@media (max-width: 768px) {
+  .about__content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about__portrait-placeholder {
+    width: 200px;
+    height: 260px;
+  }
+}
+
+/* ---- Contact Page ---- */
+
+.contact__heading {
+  font-family: var(--font-serif);
+  color: var(--color-accent);
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.contact__form {
+  max-width: 500px;
+}
+
+.contact__field {
+  margin-bottom: 1.25rem;
+}
+
+.contact__label {
+  display: block;
+  color: var(--color-text);
+  opacity: 0.7;
+  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+  font-family: var(--font-serif);
+}
+
+.contact__input,
+.contact__select,
+.contact__textarea {
+  width: 100%;
+  background: rgba(36, 26, 14, 0.8);
+  border: 1px solid rgba(200, 144, 42, 0.3);
+  border-radius: 3px;
+  color: var(--color-text);
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+  transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
+}
+
+.contact__input:focus,
+.contact__select:focus,
+.contact__textarea:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px rgba(200, 144, 42, 0.15);
+}
+
+/* Custom dropdown arrow — small downward chevron in accent color */
+.contact__select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c8902a' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-position: right 1rem center;
+  background-repeat: no-repeat;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+/* Style native select options (limited browser support, best effort) */
+.contact__select option {
+  background: #241a0e;
+  color: var(--color-text);
+}
+
+.contact__textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact__error {
+  color: #cc4444;
+  font-size: 0.9rem;
+  min-height: 1.2em;
+  margin-bottom: 0.5rem;
+}
+
+.contact__submit {
+  width: 100%;
+  background: rgba(200, 144, 42, 0.15);
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  padding: 0.75rem;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background var(--duration-fast);
+}
+
+.contact__submit:hover {
+  background: rgba(200, 144, 42, 0.3);
+}
+
+.contact__submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.contact__success {
+  max-width: 500px;
+}
+
+.contact__success-text {
+  color: var(--color-accent);
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  text-align: center;
+  padding-top: 3rem;
+}

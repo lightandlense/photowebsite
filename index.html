@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="css/darkroom.css">
   <link rel="stylesheet" href="css/transition.css">
   <link rel="stylesheet" href="css/gallery.css">
+  <link rel="stylesheet" href="css/pages.css">
 </head>
 <body>
 
@@ -36,7 +37,7 @@
       <div class="darkroom__background"></div>
       <div class="darkroom__safelight"></div>
 
-      <!-- Top clothesline — 5 photos (3 genre + 2 decorative) -->
+      <!-- Top clothesline — 5 genre galleries -->
       <div class="clothesline clothesline--top">
         <div class="clothesline__wire"></div>
         <figure class="clothesline__photo" data-genre="fashion">
@@ -45,36 +46,38 @@
             <span class="clothesline__genre-label">Fashion</span>
           </div>
         </figure>
-        <figure class="clothesline__photo clothesline__photo--decorative">
-          <div class="clothesline__pin"></div>
-          <div class="clothesline__image" style="background: linear-gradient(175deg, #1a1814 0%, #3a3028 20%, #2a2218 40%, #4a3e30 65%, #1e1a14 100%);"></div>
-        </figure>
         <figure class="clothesline__photo" data-genre="beauty">
           <div class="clothesline__pin"></div>
           <div class="clothesline__image" style="background: url('images/beauty/DSC5447-Edit-min.jpg') center/cover;">
             <span class="clothesline__genre-label">Beauty</span>
           </div>
         </figure>
-        <figure class="clothesline__photo clothesline__photo--decorative">
-          <div class="clothesline__pin"></div>
-          <div class="clothesline__image" style="background: linear-gradient(170deg, #1c1c20 0%, #2e2a24 25%, #3a3630 50%, #22201c 75%, #18161a 100%);"></div>
-        </figure>
         <figure class="clothesline__photo" data-genre="light-painting">
           <div class="clothesline__pin"></div>
           <div class="clothesline__image" style="background: url('images/light-painting/Russell-Klimas-Lightpainting-min.jpg') center/cover;">
-            <span class="clothesline__genre-label">Light Painting</span>
+            <span class="clothesline__genre-label clothesline__genre-label--long">Light Painting</span>
           </div>
         </figure>
-      </div>
-
-      <!-- Bottom clothesline — 4 photos (2 genre + 2 nav) -->
-      <div class="clothesline clothesline--bottom">
-        <div class="clothesline__wire"></div>
         <figure class="clothesline__photo" data-genre="drone">
           <div class="clothesline__pin"></div>
           <div class="clothesline__image" style="background: url('images/drone/Balance-Steamboat-Garden-of-the-Gods-drone-light-painting.jpg') center/cover;">
             <span class="clothesline__genre-label">Drone</span>
           </div>
+        </figure>
+        <figure class="clothesline__photo" data-genre="gels">
+          <div class="clothesline__pin"></div>
+          <div class="clothesline__image" style="background: url('images/gels/DSC7601-Edit.jpg') center/cover;">
+            <span class="clothesline__genre-label">Gels</span>
+          </div>
+        </figure>
+      </div>
+
+      <!-- Bottom clothesline — spare, nav pages, spare -->
+      <div class="clothesline clothesline--bottom">
+        <div class="clothesline__wire"></div>
+        <figure class="clothesline__photo clothesline__photo--decorative">
+          <div class="clothesline__pin"></div>
+          <div class="clothesline__image" style="background: linear-gradient(175deg, #1a1814 0%, #3a3028 20%, #2a2218 40%, #4a3e30 65%, #1e1a14 100%);"></div>
         </figure>
         <figure class="clothesline__photo" data-nav="about" role="button" tabindex="0" aria-label="Navigate to About page">
           <div class="clothesline__pin"></div>
@@ -88,11 +91,9 @@
             <span class="clothesline__genre-label">Contact</span>
           </div>
         </figure>
-        <figure class="clothesline__photo" data-genre="gels">
+        <figure class="clothesline__photo clothesline__photo--decorative">
           <div class="clothesline__pin"></div>
-          <div class="clothesline__image" style="background: url('images/gels/DSC7601-Edit.jpg') center/cover;">
-            <span class="clothesline__genre-label">Gels</span>
-          </div>
+          <div class="clothesline__image" style="background: linear-gradient(170deg, #1c1c20 0%, #2e2a24 25%, #3a3630 50%, #22201c 75%, #18161a 100%);"></div>
         </figure>
       </div>
     </section>
@@ -103,6 +104,70 @@
       <p class="gallery__genre-name" id="gallery-genre-name"></p>
       <!-- Filmstrip injected here by buildFilmstrip() -->
       <button id="gallery-back" class="gallery__back" aria-label="Return to darkroom">&#8592; Back</button>
+    </section>
+
+    <section id="about" class="scene" style="display: none;">
+      <div class="page__inner">
+        <button class="page__back" aria-label="Return to darkroom">&#8592; Back</button>
+        <div class="about__content">
+          <div class="about__portrait">
+            <!-- TODO: Replace with real portrait photo -->
+            <div class="about__portrait-placeholder"></div>
+          </div>
+          <div class="about__text">
+            <h1 class="about__heading">About Me</h1>
+            <!-- TODO: Replace with real bio text -->
+            <p class="about__bio">Placeholder bio text. A photographer who sees light as a language and the darkroom as a sanctuary. Every frame tells a story of patience, precision, and the quiet magic of captured moments.</p>
+            <p class="about__bio">With years behind the lens — from high-fashion editorials to experimental light painting — each genre is a different conversation with light.</p>
+          </div>
+        </div>
+        <div class="about__footer">
+          <button class="about__cta">Get in Touch</button>
+          <div class="about__socials">
+            <!-- TODO: Replace # with real social URLs -->
+            <a href="#" class="about__social-link" target="_blank" rel="noopener">Instagram</a>
+            <a href="#" class="about__social-link" target="_blank" rel="noopener">Behance</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="scene" style="display: none;">
+      <div class="page__inner">
+        <button class="page__back" aria-label="Return to darkroom">&#8592; Back</button>
+        <h1 class="contact__heading">Contact</h1>
+        <form id="contact-form" class="contact__form" action="https://formspree.io/f/PLACEHOLDER" method="POST">
+          <div class="contact__field">
+            <label for="contact-name" class="contact__label">Name</label>
+            <input type="text" id="contact-name" name="name" class="contact__input" required autocomplete="name">
+          </div>
+          <div class="contact__field">
+            <label for="contact-email" class="contact__label">Email</label>
+            <input type="email" id="contact-email" name="email" class="contact__input" required autocomplete="email">
+          </div>
+          <div class="contact__field">
+            <label for="contact-type" class="contact__label">Project Type</label>
+            <select id="contact-type" name="project_type" class="contact__select" required>
+              <option value="" disabled selected>Select a shoot type...</option>
+              <option value="fashion">Fashion</option>
+              <option value="beauty">Beauty</option>
+              <option value="light-painting">Light Painting</option>
+              <option value="drone">Drone</option>
+              <option value="gels">Gels</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="contact__field">
+            <label for="contact-message" class="contact__label">Message</label>
+            <textarea id="contact-message" name="message" class="contact__textarea" rows="5" required></textarea>
+          </div>
+          <div class="contact__error" id="contact-error" aria-live="polite"></div>
+          <button type="submit" class="contact__submit">Send Message</button>
+        </form>
+        <div class="contact__success" id="contact-success" style="display: none;">
+          <p class="contact__success-text">Thank you! Your message has been sent. I'll be in touch soon.</p>
+        </div>
+      </div>
     </section>
 
   </div>
