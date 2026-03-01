@@ -32,7 +32,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   5. `gallery.json` schema exists with at least one placeholder genre entry and loads without error in the console
 **Plans:** 2 plans
 Plans:
-- [ ] 01-01-PLAN.md — HTML scaffold, CSS design system, gallery.json, .htaccess, image folders
+- [x] 01-01-PLAN.md — HTML scaffold, CSS design system, gallery.json, .htaccess, image folders
 - [ ] 01-02-PLAN.md — SPA router, state store, main.js entry point with GSAP init
 
 ### Phase 2: Entrance and Darkroom Scene
@@ -87,7 +87,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/2 | Planning complete | - |
+| 1. Foundation | 1/2 | In progress | - |
 | 2. Entrance and Darkroom Scene | 0/? | Not started | - |
 | 3. Transition Sequences | 0/? | Not started | - |
 | 4. Filmstrip Gallery | 0/? | Not started | - |

@@ -56,11 +56,11 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Infrastructure
 
-- [ ] **INFR-01**: Static site (HTML/CSS/JS) — no server-side runtime required
-- [ ] **INFR-02**: Deployable on traditional cPanel/shared hosting
+- [x] **INFR-01**: Static site (HTML/CSS/JS) — no server-side runtime required
+- [x] **INFR-02**: Deployable on traditional cPanel/shared hosting
 - [ ] **INFR-03**: Browser history integration (back/forward buttons work with animated transitions)
-- [ ] **INFR-04**: Works on modern browsers (Chrome, Safari, Firefox, Edge)
-- [ ] **INFR-05**: Responsive — functions on mobile with adapted interactions (tap instead of hover)
+- [x] **INFR-04**: Works on modern browsers (Chrome, Safari, Firefox, Edge)
+- [x] **INFR-05**: Responsive — functions on mobile with adapted interactions (tap instead of hover)
 
 ## v2 Requirements
 
@@ -101,11 +101,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| INFR-01 | Phase 1 | Pending |
-| INFR-02 | Phase 1 | Pending |
+| INFR-01 | Phase 1 | Complete (01-01) |
+| INFR-02 | Phase 1 | Complete (01-01) |
 | INFR-03 | Phase 1 | Pending |
-| INFR-04 | Phase 1 | Pending |
-| INFR-05 | Phase 1 | Pending |
+| INFR-04 | Phase 1 | Complete (01-01) |
+| INFR-05 | Phase 1 | Complete (01-01) |
 | ENTR-01 | Phase 2 | Pending |
 | ENTR-02 | Phase 2 | Pending |
 | ENTR-03 | Phase 2 | Pending |
