@@ -1,0 +1,277 @@
+/* darkroom.css — Darkroom interior scene styles
+ * Depends on: css/tokens.css (for CSS custom properties)
+ * The #darkroom section starts as display: none (set inline in HTML)
+ * and is revealed by GSAP during the walk-in transition.
+ */
+
+/* ============================================================
+   Darkroom atmosphere — DARK-01
+   ============================================================ */
+
+#darkroom {
+  background: var(--color-bg);
+}
+
+/* Warm amber safe light — classic darkroom glow from upper-left */
+.darkroom__safelight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 45%;
+  height: 55%;
+  background: radial-gradient(
+    ellipse at top left,
+    rgba(255, 140, 0, 0.15) 0%,
+    rgba(200, 100, 20, 0.06) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ============================================================
+   Clothesline — DARK-03
+   Wire and five hanging photo slots
+   ============================================================ */
+
+.clothesline {
+  position: absolute;
+  top: 15%;
+  left: 5%;
+  right: 5%;
+  height: 60%;
+  z-index: 2;
+}
+
+.clothesline__wire {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(232, 213, 176, 0.3) 10%,
+    rgba(232, 213, 176, 0.4) 50%,
+    rgba(232, 213, 176, 0.3) 90%,
+    transparent
+  );
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.clothesline__photo {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transform-origin: top center;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+/* Position each photo along the clothesline at ~18% intervals starting at 5% */
+/* nth-child(2) through (6) because nth-child(1) is .clothesline__wire */
+.clothesline__photo:nth-child(2) { left: 5%; }
+.clothesline__photo:nth-child(3) { left: 23%; }
+.clothesline__photo:nth-child(4) { left: 41%; }
+.clothesline__photo:nth-child(5) { left: 59%; }
+.clothesline__photo:nth-child(6) { left: 77%; }
+
+/* Staggered heights for organic feel */
+.clothesline__photo:nth-child(2) { top: 4px; }
+.clothesline__photo:nth-child(3) { top: -2px; }
+.clothesline__photo:nth-child(4) { top: 6px; }
+.clothesline__photo:nth-child(5) { top: 1px; }
+.clothesline__photo:nth-child(6) { top: -3px; }
+
+/* ============================================================
+   Sway animation — DARK-04
+   Subtle ambient sway — noticed if you stare, not actively distracting
+   ============================================================ */
+
+@keyframes sway {
+  from { rotate: -1.5deg; }
+  to   { rotate: 1.5deg; }
+}
+
+.clothesline__photo {
+  animation: sway 5s ease-in-out infinite alternate;
+  will-change: rotate;
+}
+
+/* Staggered durations and delays for organic, non-synchronized feel */
+.clothesline__photo:nth-child(2) { animation-duration: 4.8s; animation-delay: -0.5s; }
+.clothesline__photo:nth-child(3) { animation-duration: 5.2s; animation-delay: -1.2s; }
+.clothesline__photo:nth-child(4) { animation-duration: 4.6s; animation-delay: -0.8s; }
+.clothesline__photo:nth-child(5) { animation-duration: 5.5s; animation-delay: -1.8s; }
+.clothesline__photo:nth-child(6) { animation-duration: 4.9s; animation-delay: -0.3s; }
+
+/* ============================================================
+   Clothespin
+   ============================================================ */
+
+.clothesline__pin {
+  width: 8px;
+  height: 20px;
+  background: linear-gradient(to bottom, #8B7355, #6B5335);
+  border-radius: 2px 2px 0 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Clothespin notch/gap at bottom */
+.clothesline__pin::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 6px;
+  background: var(--color-bg);
+}
+
+/* ============================================================
+   Photo placeholder image
+   ============================================================ */
+
+.clothesline__image {
+  width: 120px;
+  height: 160px;
+  border: 2px solid rgba(232, 213, 176, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 8px;
+  position: relative;
+}
+
+.clothesline__genre-label {
+  font-family: var(--font-serif);
+  font-size: 0.65rem;
+  color: var(--color-text);
+  opacity: 0.7;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   In-world navigation elements — DARK-07 through DARK-10
+   Silhouette figure (About) and business card (Contact)
+   positioned below clothesline, always-visible labels
+   ============================================================ */
+
+.nav-element {
+  position: absolute;
+  cursor: pointer;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav-element--silhouette {
+  bottom: 8%;
+  left: 15%;
+}
+
+.nav-element--card {
+  bottom: 8%;
+  right: 15%;
+}
+
+.nav-element__image {
+  width: 60px;
+  height: 100px;
+}
+
+/* CSS-drawn silhouette figure — dark shape against dim background */
+.nav-element__image--silhouette {
+  background: #0a0806;
+  clip-path: polygon(
+    50% 0%,
+    62% 5%, 65% 12%, 62% 20%,
+    55% 22%, 65% 35%, 70% 60%, 65% 100%,
+    55% 100%, 52% 65%, 48% 65%, 45% 100%,
+    35% 100%, 30% 60%, 35% 35%, 45% 22%,
+    38% 20%, 35% 12%, 38% 5%
+  );
+  opacity: 0.7;
+}
+
+/* CSS-drawn business card */
+.nav-element__image--card {
+  width: 80px;
+  height: 50px;
+  background: linear-gradient(135deg, #3a3020, #2a2018);
+  border: 1px solid rgba(200, 144, 42, 0.3);
+  border-radius: 3px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+/* Subtle text line on the card */
+.nav-element__image--card::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  right: 15%;
+  height: 1px;
+  background: rgba(232, 213, 176, 0.2);
+}
+
+/* Labels — always visible at reduced opacity, Playfair Display serif */
+.nav-element__label {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 0.7rem;
+  color: var(--color-text);
+  opacity: 0.5;
+  text-align: center;
+  margin-top: 0.5rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   Mobile responsive for darkroom
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .clothesline__image {
+    width: 80px;
+    height: 110px;
+  }
+
+  .clothesline {
+    top: 10%;
+    left: 2%;
+    right: 2%;
+  }
+
+  .nav-element--silhouette {
+    left: 10%;
+    bottom: 5%;
+  }
+
+  .nav-element--card {
+    right: 10%;
+    bottom: 5%;
+  }
+
+  .nav-element__image {
+    width: 45px;
+    height: 75px;
+  }
+
+  .nav-element__image--card {
+    width: 60px;
+    height: 38px;
+  }
+}
