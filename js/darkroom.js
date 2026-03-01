@@ -14,6 +14,7 @@
  */
 
 import { navigateTo } from './router.js';
+import { startForward } from './transition.js';
 
 /**
  * Initialises darkroom interactivity — called once on page load.
@@ -58,9 +59,13 @@ export function initDarkroom() {
         if (e.key === 'Enter') navigateTo(route);
       });
     } else {
-      // Genre photo click — Phase 3 adds the hand-grab transition
+      // Genre photo click — triggers hand-grab transition
       photo.addEventListener('click', () => {
-        console.log(`[darkroom] Photo clicked: ${genre} (hand-grab transition in Phase 3)`);
+        startForward(genre, photo);
+      });
+      // Keyboard accessibility: Enter key triggers the same transition
+      photo.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') startForward(genre, photo);
       });
     }
   });

@@ -11,6 +11,7 @@ import { initRouter } from './router.js';
 import { store } from './store.js';
 import { initEntrance } from './entrance.js';
 import { initDarkroom } from './darkroom.js';
+import { startReverse } from './transition.js';
 
 // GSAP globals are available via CDN scripts loaded before this module.
 // Do NOT import GSAP — access as window globals.
@@ -58,11 +59,24 @@ async function init() {
   // Initialize scenes
   initEntrance();  // CTA fade-in, door hover, walk-in timeline
   initDarkroom();  // Wire darkroom hover glows and nav click handlers (photos reveal later)
+
+  // Gallery back button — triggers history.back() so popstate fires and startReverse() runs
+  const galleryBack = document.getElementById('gallery-back');
+  if (galleryBack) {
+    galleryBack.addEventListener('click', () => {
+      history.back();
+    });
+  }
 }
 
-// Listen for route changes and log them
+// Listen for route changes
 window.addEventListener('route:change', (e) => {
   console.log(`[main] Route changed: ${e.detail.path} (${e.detail.trigger})`);
+
+  // Reverse transition: browser back to root = return to darkroom
+  if (e.detail.trigger === 'popstate' && e.detail.path === '/') {
+    startReverse();
+  }
 });
 
 // Boot when DOM is ready
