@@ -84,9 +84,15 @@ export function startForward(genre, photoEl) {
   // Ensure darkroom is fully visible at transition start
   gsap.set(darkroomEl, { display: 'block', opacity: 1 });
 
-  // Calculate hand target Y: position hand near the clothespin
-  // The pin is at the top of the photo; target brings the top of the hand SVG (~20px) to that level
-  const targetY = rect.top - 160; // hand 180px tall, top 20px of SVG is fingers tip
+  // Hand dimensions and finger-tip offset (fingers are ~10% from top of SVG)
+  const handW = 280;
+  const handH = 420;
+  const fingerTipOffsetY = handH * 0.05; // fingers near top of SVG
+
+  // Position hand so fingertips reach the clothespin (top of photo)
+  // Hand's left edge centered on the photo, fingertips at pin level
+  const handTargetX = rect.left + rect.width / 2 - handW / 2;
+  const handTargetY = rect.top - fingerTipOffsetY;
 
   // Build and play the forward timeline (rebuilt per click — position varies)
   forwardTl = gsap.timeline({
@@ -99,13 +105,14 @@ export function startForward(genre, photoEl) {
     }
   });
 
-  // --- ACT 1: GRAB (~0–1.3s) ---
+  // --- ACT 1: HAND REACHES UP AND GRABS PHOTO (~0–1.0s) ---
 
-  // Hand enters from bottom toward the clothespin
   forwardTl
-    .set(handEl, { display: 'block', y: '100vh', opacity: 1 }, 0)
-    .to(handEl, { y: targetY, duration: 0.8, ease: 'power2.out' }, 0)
-    // Clothespin releases at ~0.6s
+    // Hand starts below viewport, centered on the clicked photo's X
+    .set(handEl, { display: 'block', x: handTargetX, y: window.innerHeight, opacity: 1 }, 0)
+    // Hand rises to the photo's clothespin
+    .to(handEl, { y: handTargetY, duration: 0.8, ease: 'power2.out' }, 0)
+    // Clothespin releases as fingers arrive
     .to(pinEl, { y: -8, opacity: 0, duration: 0.3, ease: 'power2.in' }, 0.6)
     // Neighbor photos sway — physical disturbance on the wire
     .to(
@@ -124,12 +131,10 @@ export function startForward(genre, photoEl) {
       photoEl.closest('.clothesline') && photoEl.closest('.clothesline').querySelector('.clothesline__wire'),
       { y: 2, duration: 0.2, ease: 'power2.out', yoyo: true, repeat: 1 },
       0.7
-    )
-    // Hand retreats back below viewport
-    .to(handEl, { y: '100vh', opacity: 0, duration: 0.4, ease: 'power2.in' }, 0.9)
-    .set(handEl, { display: 'none' }, 1.3);
+    );
 
-  // --- ACT 2: PULL-IN (~0.9–2.1s) ---
+  // --- ACT 2: PHOTO ZOOMS IN WITH HAND (~1.0–2.2s) ---
+  // Hand holds the photo as it scales up — both move together
 
   forwardTl
     .to(
@@ -142,16 +147,19 @@ export function startForward(genre, photoEl) {
         duration: 1.2,
         ease: 'power2.inOut',
       },
-      0.9
+      1.0
     )
+    // Hand fades out as the photo takes over the screen
+    .to(handEl, { opacity: 0, duration: 0.5, ease: 'power2.in' }, 1.2)
+    .set(handEl, { display: 'none' }, 1.7)
     // Darkroom fades out behind the growing photo
     .to(darkroomEl, { opacity: 0, duration: 0.8, ease: 'power2.in' }, 1.4);
 
-  // --- ACT 3: DISSOLVE (~1.8–2.1s) ---
+  // --- ACT 3: DISSOLVE INTO GALLERY (~2.0–2.3s) ---
 
   forwardTl
-    .to(galleryEl, { opacity: 1, duration: 0.3, ease: 'none' }, 1.8)
-    .set(darkroomEl, { display: 'none' }, 2.1);
+    .to(galleryEl, { opacity: 1, duration: 0.3, ease: 'none' }, 2.0)
+    .set(darkroomEl, { display: 'none' }, 2.3);
 }
 
 /**
