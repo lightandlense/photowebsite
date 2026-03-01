@@ -94,9 +94,13 @@ export function startForward(genre, photoEl) {
   const handTargetX = rect.left + rect.width / 2 - handW / 2;
   const handTargetY = rect.top - fingerTipOffsetY;
 
+  // Track whether this timeline completed forward (prevents onComplete during reverse)
+  let completedForward = false;
+
   // Build and play the forward timeline (rebuilt per click — position varies)
   forwardTl = gsap.timeline({
     onComplete: () => {
+      completedForward = true;
       store.set({ transitionInProgress: false });
       // Mark photo as absent — CSS hides contents, layout is preserved
       photoEl.classList.add('clothesline__photo--empty');
@@ -109,9 +113,9 @@ export function startForward(genre, photoEl) {
 
   forwardTl
     // Hand starts below viewport, centered on the clicked photo's X
-    .set(handEl, { display: 'block', x: handTargetX, y: window.innerHeight, opacity: 1 }, 0)
+    .set(handEl, { display: 'block', left: handTargetX, top: window.innerHeight, opacity: 1 }, 0)
     // Hand rises to the photo's clothespin
-    .to(handEl, { y: handTargetY, duration: 0.8, ease: 'power2.out' }, 0)
+    .to(handEl, { top: handTargetY, duration: 0.8, ease: 'power2.out' }, 0)
     // Clothespin releases as fingers arrive
     .to(pinEl, { y: -8, opacity: 0, duration: 0.3, ease: 'power2.in' }, 0.6)
     // Neighbor photos sway — physical disturbance on the wire
@@ -150,7 +154,7 @@ export function startForward(genre, photoEl) {
       1.0
     )
     // Hand fades out as the photo takes over the screen
-    .to(handEl, { opacity: 0, duration: 0.5, ease: 'power2.in' }, 1.2)
+    .to(handEl, { opacity: 0, top: handTargetY - 100, duration: 0.5, ease: 'power2.in' }, 1.2)
     .set(handEl, { display: 'none' }, 1.7)
     // Darkroom fades out behind the growing photo
     .to(darkroomEl, { opacity: 0, duration: 0.8, ease: 'power2.in' }, 1.4);
@@ -179,7 +183,10 @@ export function startReverse() {
   const galleryEl = document.getElementById('gallery');
 
   // Pitfall 5: Hide hand BEFORE calling reverse() to prevent hand replay on return
-  gsap.set(handEl, { display: 'none', y: '100vh' });
+  gsap.set(handEl, { display: 'none', top: window.innerHeight });
+
+  // Remove the onComplete so it doesn't fire navigateTo during reverse
+  forwardTl.eventCallback('onComplete', null);
 
   // Ensure darkroom is ready to fade back in
   gsap.set(darkroomEl, { display: 'block' });

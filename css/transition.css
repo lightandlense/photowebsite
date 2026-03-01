@@ -10,7 +10,7 @@
 /* === Hand silhouette positioning === */
 #hand-silhouette {
   position: fixed;
-  bottom: 0;
+  top: 0;
   left: 0;
   width: 280px;
   height: 420px;
