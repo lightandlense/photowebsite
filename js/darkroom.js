@@ -52,10 +52,10 @@ export function initDarkroom() {
     });
 
     if (nav) {
-      // Nav photo click — fade transition to page via pages.js
-      photo.addEventListener('click', () => navigateToPage(nav));
+      // Nav photo click — scale-up transition to page via pages.js
+      photo.addEventListener('click', () => navigateToPage(nav, photo));
       photo.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') navigateToPage(nav);
+        if (e.key === 'Enter') navigateToPage(nav, photo);
       });
     } else {
       // Genre photo click — triggers hand-grab transition

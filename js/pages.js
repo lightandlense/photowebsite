@@ -11,10 +11,24 @@ import { navigateTo } from './router.js';
 import { store } from './store.js';
 
 let activePage = null; // 'about' | 'contact' | null
+let activePagePhotoEl = null; // clothesline photo that was clicked
+let pagePhotoSnapshot = null; // { scale, dx, dy } for reverse
 
 export function getActivePage() { return activePage; }
 
-export function navigateToPage(pageId) {
+/**
+ * Returns sibling .clothesline__photo elements within the same .clothesline,
+ * excluding the clicked photo itself and decorative photos.
+ */
+function getNeighborPhotos(photoEl) {
+  const parent = photoEl.closest('.clothesline');
+  if (!parent) return [];
+  return Array.from(parent.querySelectorAll('.clothesline__photo')).filter(
+    (el) => el !== photoEl && !el.classList.contains('clothesline__photo--decorative')
+  );
+}
+
+export function navigateToPage(pageId, photoEl) {
   if (store.get().transitionInProgress) return;
   store.set({ transitionInProgress: true });
 
@@ -26,18 +40,75 @@ export function navigateToPage(pageId) {
     el.style.animationPlayState = 'paused';
   });
 
+  // Snap photo to neutral rotation, then measure
+  gsap.set(photoEl, { rotate: 0 });
+
+  const rect = photoEl.getBoundingClientRect();
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const scale = Math.max(vw / rect.width, vh / rect.height);
+  const dx = vw / 2 - (rect.left + rect.width / 2);
+  const dy = vh / 2 - (rect.top + rect.height / 2);
+
+  // Save for reverse
+  pagePhotoSnapshot = { scale, dx, dy };
+  activePagePhotoEl = photoEl;
+
+  const pinEl = photoEl.querySelector('.clothesline__pin');
+
+  // Allow photo to escape darkroom overflow:hidden
+  darkroomEl.style.overflow = 'visible';
+  photoEl.style.zIndex = '50';
+  photoEl.closest('.clothesline').style.zIndex = '100';
+
+  gsap.set(pageEl, { display: 'block', opacity: 0 });
+
   const tl = gsap.timeline({
     onComplete: () => {
+      gsap.set(darkroomEl, { display: 'none' });
+      photoEl.classList.add('clothesline__photo--empty');
       activePage = pageId;
       store.set({ transitionInProgress: false });
       navigateTo('/' + pageId);
     }
   });
 
-  tl.to(darkroomEl, { opacity: 0, duration: 0.5, ease: 'power2.in' }, 0)
-    .set(darkroomEl, { display: 'none' }, 0.5)
-    .set(pageEl, { display: 'block', opacity: 0 }, 0.5)
-    .to(pageEl, { opacity: 1, duration: 0.5, ease: 'power2.out' }, 0.5);
+  // ACT 1: Pin releases, neighbors sway, wire bounces
+  tl.to(pinEl, { y: -8, opacity: 0, duration: 0.3, ease: 'power2.in' }, 0)
+    .to(
+      getNeighborPhotos(photoEl),
+      {
+        rotate: (i) => (i % 2 === 0 ? 3 : -3),
+        duration: 0.4,
+        ease: 'power2.out',
+        yoyo: true,
+        repeat: 1,
+      },
+      0.1
+    )
+    .to(
+      photoEl.closest('.clothesline')?.querySelector('.clothesline__wire'),
+      { y: 2, duration: 0.2, ease: 'power2.out', yoyo: true, repeat: 1 },
+      0.1
+    );
+
+  // ACT 2: Photo scales to fill viewport, darkroom fades
+  tl.to(
+      photoEl,
+      {
+        scale: scale,
+        x: dx,
+        y: dy,
+        transformOrigin: '50% 50%',
+        duration: 1.2,
+        ease: 'power2.inOut',
+      },
+      0.3
+    )
+    .to(darkroomEl, { opacity: 0, duration: 0.8, ease: 'power2.in' }, 0.7);
+
+  // ACT 3: Page dissolves in
+  tl.to(pageEl, { opacity: 1, duration: 0.3, ease: 'none' }, 1.3);
 }
 
 export function navigateFromPage() {
@@ -47,26 +118,70 @@ export function navigateFromPage() {
   const darkroomEl = document.getElementById('darkroom');
   const pageEl = document.getElementById(activePage);
 
-  // Reset contact form if leaving contact page (form state persists between visits)
+  // Reset contact form if leaving contact page
   if (activePage === 'contact') {
     resetContactForm();
   }
 
+  const photoToRestore = activePagePhotoEl;
+  const pinToRestore = photoToRestore ? photoToRestore.querySelector('.clothesline__pin') : null;
+  const imgToRestore = photoToRestore ? photoToRestore.querySelector('.clothesline__image') : null;
+
+  // Prep: remove empty class, set image/pin to invisible so they can fade in
+  if (photoToRestore) {
+    photoToRestore.classList.remove('clothesline__photo--empty');
+    if (imgToRestore) gsap.set(imgToRestore, { opacity: 0, visibility: 'visible' });
+    if (pinToRestore) gsap.set(pinToRestore, { opacity: 0, visibility: 'visible' });
+  }
+
+  gsap.set(darkroomEl, { display: 'block', opacity: 0 });
+
   const tl = gsap.timeline({
     onComplete: () => {
       gsap.set(pageEl, { display: 'none', opacity: 0 });
-      activePage = null;
+
+      if (photoToRestore) {
+        gsap.set(photoToRestore, { clearProps: 'scale,x,y,rotate,transformOrigin,transform' });
+        photoToRestore.style.zIndex = '';
+        const clothesline = photoToRestore.closest('.clothesline');
+        if (clothesline) clothesline.style.zIndex = '';
+        darkroomEl.style.overflow = '';
+        gsap.set(photoToRestore, { opacity: 1 });
+
+        if (pinToRestore) gsap.set(pinToRestore, { clearProps: 'y,transform' });
+        if (imgToRestore) {
+          gsap.set(imgToRestore, { clearProps: 'scale,boxShadow,transform,visibility' });
+          gsap.set(imgToRestore, {
+            filter: 'sepia(0.8) saturate(1.5) hue-rotate(-15deg) brightness(0.7)',
+          });
+        }
+      }
+
       // Resume CSS sway
       document.querySelectorAll('.clothesline__photo').forEach(el => {
         el.style.animationPlayState = '';
       });
+
+      activePage = null;
+      activePagePhotoEl = null;
+      pagePhotoSnapshot = null;
       store.set({ transitionInProgress: false });
     }
   });
 
-  gsap.set(darkroomEl, { display: 'block', opacity: 0 });
-  tl.to(pageEl, { opacity: 0, duration: 0.4, ease: 'power2.in' }, 0)
-    .to(darkroomEl, { opacity: 1, duration: 0.5, ease: 'power2.out' }, 0.2);
+  // Page fades out, darkroom fades in, photo shrinks back, image+pin fade in
+  tl.to(pageEl, { opacity: 0, duration: 0.3, ease: 'power2.in' }, 0)
+    .to(darkroomEl, { opacity: 1, duration: 0.5, ease: 'power2.out' }, 0.1);
+
+  if (photoToRestore) {
+    tl.to(
+        photoToRestore,
+        { scale: 1, x: 0, y: 0, duration: 0.7, ease: 'power2.inOut' },
+        0.2
+      )
+      .to(imgToRestore, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 0.5)
+      .to(pinToRestore, { opacity: 1, duration: 0.3, ease: 'power2.out' }, 0.6);
+  }
 }
 
 /** Reset contact form to initial state — show form, hide success, clear fields */
