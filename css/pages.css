@@ -10,12 +10,18 @@
 /* ---- Shared Page Layout ---- */
 
 /* Override .scene's fixed height + overflow:hidden so pages can scroll */
-#about,
 #contact {
-  height: auto;
-  min-height: 100vh;
-  min-height: 100dvh;
-  overflow-y: auto;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: url('/images/darkroom/desk.png') center center / cover no-repeat;
+  background-color: #1a1410;
+}
+
+/* About uses tray layout — fixed viewport on desktop, scrollable on mobile */
+#about {
+  height: 100vh;
+  overflow: hidden;
 }
 
 .page__inner {
@@ -49,309 +55,602 @@
   color: var(--color-accent);
 }
 
-/* ---- About Page ---- */
+/* ---- About Page — Developer Tray ---- */
 
-/* Intro: portrait + bio side by side, equal width */
-.about__intro {
-  display: flex;
-  gap: 2rem;
-  align-items: flex-start;
-  margin-top: 2rem;
+/* Override shared page layout — tray is its own layout */
+#about .page__back {
+  z-index: 200;
 }
 
-.about__portrait {
-  flex: 1 1 0;
-  min-width: 0;
+/* Tray container */
+.tray {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: url('/images/darkroom/tray.png') center / cover no-repeat;
+  background-color: #2a1510;
 }
 
-.about__portrait-img {
-  width: 100%;
-  height: auto;
-  border: 1px solid rgba(200, 144, 42, 0.2);
-  border-radius: 3px;
-  display: block;
+/* Prints container — clipped to the tray basin so prints don't overflow onto the rim */
+.tray__prints {
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  width: 90%;
+  height: 85%;
+  z-index: 2;
+  overflow: hidden;
+  border-radius: 4px;
 }
 
-.about__text {
-  flex: 1 1 0;
-  min-width: 0;
-}
-
-.about__heading {
+/* Individual print card */
+.tray__print {
+  position: absolute;
+  background: #f5f0e8;
+  border-radius: 2px;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4),
+              0 0 1px rgba(0, 0, 0, 0.2);
+  color: #2a2218;
   font-family: var(--font-serif);
-  color: var(--color-accent);
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  font-weight: 700;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  will-change: transform, opacity, filter;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-.about__bio {
-  color: var(--color-text);
-  line-height: 1.7;
-  margin-bottom: 1rem;
-  font-size: 1.05rem;
+.tray__print.is-dragging {
+  cursor: grabbing;
+  z-index: 50;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5),
+              0 0 2px rgba(0, 0, 0, 0.3);
 }
 
-/* Credential sections */
-.about__section {
-  margin-top: 2.5rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(200, 144, 42, 0.15);
+.tray__print p {
+  margin: 0 0 0.6rem;
 }
 
-.about__section-heading {
+.tray__print p:last-child {
+  margin-bottom: 0;
+}
+
+/* Print headings */
+.tray__print-heading {
   font-family: var(--font-serif);
-  color: var(--color-accent);
-  font-size: 1.4rem;
+  font-size: 0.95rem;
   font-weight: 700;
-  margin-bottom: 1.25rem;
+  color: #3a2a18;
+  margin: 0 0 0.5rem;
   letter-spacing: 0.03em;
 }
 
-.about__list {
+/* Print lists */
+.tray__print-list {
   list-style: none;
   padding: 0;
   margin: 0;
-  color: var(--color-text);
-  line-height: 2;
-  font-size: 0.95rem;
+  line-height: 1.7;
+  font-size: 0.75rem;
 }
 
-.about__list li {
-  opacity: 0.85;
-}
-
-.about__list a {
-  color: var(--color-text);
+.tray__print-list a {
+  color: #3a2a18;
   text-decoration: none;
-  border-bottom: 1px solid rgba(200, 144, 42, 0.3);
+  border-bottom: 1px solid rgba(60, 40, 20, 0.3);
   transition: color var(--duration-fast), border-color var(--duration-fast);
 }
 
-.about__list a:hover {
-  color: var(--color-accent);
-  border-bottom-color: var(--color-accent);
+.tray__print-list a:hover {
+  color: #8a5a1a;
+  border-bottom-color: #8a5a1a;
 }
 
-/* Two-column layout for longer lists */
-.about__list--two-col {
+.tray__print-list--inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 1rem;
+}
+
+.tray__print-list--two-col {
   columns: 2;
-  column-gap: 2rem;
+  column-gap: 1.2rem;
 }
 
-/* Clients displayed inline with separators */
-.about__list--clients {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
-  line-height: 1.8;
+/*
+ * Print layout — 3 rows, no overlaps
+ * Row 1 (top 0-30%):  Portrait | Bio | CTA
+ * Row 2 (top 32-58%): Clients  | Accolades
+ * Row 3 (top 60-98%): Speaking | Press
+ */
+
+/* Portrait print */
+.tray__print--portrait {
+  top: 2%;
+  left: 1%;
+  width: 160px;
+  padding: 0.6rem;
+  text-align: center;
+  transform: rotate(-2deg);
 }
 
-.about__list--clients li {
-  white-space: nowrap;
+.tray__print-photo {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 1px;
 }
 
-/* Footer */
-.about__footer {
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(200, 144, 42, 0.15);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  align-items: center;
-  padding-bottom: 3rem;
-}
-
-.about__cta {
-  background: rgba(200, 144, 42, 0.15);
-  border: 1px solid var(--color-accent);
-  color: var(--color-accent);
-  padding: 0.6rem 1.5rem;
+.tray__print-name {
   font-family: var(--font-serif);
-  font-size: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #3a2a18;
+  margin: 0.4rem 0 0;
+}
+
+/* Bio print */
+.tray__print--bio {
+  top: 1%;
+  left: 22%;
+  width: 42%;
+  max-width: 440px;
+  transform: rotate(1deg);
+}
+
+/* CTA print */
+.tray__print--cta {
+  top: 1%;
+  left: 70%;
+  width: 180px;
+  text-align: center;
+  transform: rotate(2deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Clients print */
+.tray__print--clients {
+  top: 34%;
+  left: 1%;
+  width: 30%;
+  max-width: 280px;
+  transform: rotate(-1.5deg);
+}
+
+/* Accolades print */
+.tray__print--accolades {
+  top: 33%;
+  left: 35%;
+  width: 38%;
+  max-width: 400px;
+  transform: rotate(1.5deg);
+}
+
+/* Speaking print */
+.tray__print--speaking {
+  top: 62%;
+  left: 1%;
+  width: 34%;
+  max-width: 360px;
+  transform: rotate(1.5deg);
+}
+
+/* Press print */
+.tray__print--press {
+  top: 60%;
+  left: 38%;
+  width: 38%;
+  max-width: 400px;
+  transform: rotate(-1deg);
+}
+
+/* CTA button — restyled for dark-on-light print card */
+.tray__print--cta .about__cta {
+  background: rgba(60, 40, 20, 0.1);
+  border: 1px solid #3a2a18;
+  color: #3a2a18;
+  padding: 0.5rem 1.2rem;
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
   border-radius: 3px;
-  text-decoration: none;
   cursor: pointer;
   transition: background var(--duration-fast);
 }
 
-.about__cta:hover {
-  background: rgba(200, 144, 42, 0.3);
+.tray__print--cta .about__cta:hover {
+  background: rgba(60, 40, 20, 0.2);
 }
 
-.about__contact-info {
+.tray__print--cta .about__contact-info {
   display: flex;
-  gap: 1.5rem;
-  align-items: center;
+  flex-direction: column;
+  gap: 0.3rem;
 }
 
-.about__contact-link {
-  color: var(--color-text);
-  opacity: 0.6;
+.tray__print--cta .about__contact-link {
+  color: #3a2a18;
+  opacity: 0.7;
   text-decoration: none;
-  font-size: 0.9rem;
-  transition: opacity var(--duration-fast), color var(--duration-fast);
+  font-size: 0.8rem;
+  transition: opacity var(--duration-fast);
 }
 
-a.about__contact-link:hover {
+.tray__print--cta a.about__contact-link:hover {
   opacity: 1;
-  color: var(--color-accent);
+  color: #8a5a1a;
 }
 
-.about__socials {
+.tray__print--cta .about__socials {
   display: flex;
-  gap: 1.25rem;
+  gap: 0.8rem;
 }
 
-.about__social-link {
-  color: var(--color-text);
-  opacity: 0.6;
+.tray__print--cta .about__social-link {
+  color: #3a2a18;
+  opacity: 0.7;
   text-decoration: none;
-  font-size: 0.9rem;
-  transition: opacity var(--duration-fast), color var(--duration-fast);
+  font-size: 0.8rem;
+  transition: opacity var(--duration-fast);
 }
 
-.about__social-link:hover {
+.tray__print--cta .about__social-link:hover {
   opacity: 1;
-  color: var(--color-accent);
+  color: #8a5a1a;
 }
 
-/* Mobile */
+/* ---- Mobile: Scrollable tray ---- */
 @media (max-width: 768px) {
-  .about__intro {
+  #about {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+
+  .tray {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+    padding: 4rem 0 3rem;
+    background: url('/images/darkroom/tray%202.png') center top / 100% auto repeat-y;
+    background-color: #8b3a2a;
+  }
+
+  .tray__prints {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 88%;
+    margin: 0 auto;
+    height: auto;
+    overflow: visible;
+    display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 1.5rem;
+    padding: 1rem 0;
   }
 
-  .about__portrait-img {
-    width: 200px;
+  .tray__print {
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 92% !important;
+    max-width: 420px !important;
+    transform: none;
   }
 
-  .about__list--two-col {
-    columns: 1;
-  }
+  /* Slight alternating offsets for organic feel */
+  .tray__print:nth-child(odd)  { margin-left: -3%; transform: rotate(-0.5deg); }
+  .tray__print:nth-child(even) { margin-right: -3%; transform: rotate(0.5deg); }
 
-  .about__footer {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+  .tray__print--portrait { width: 200px !important; }
 
-  .about__contact-info {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+  .tray__print-list--two-col { columns: 1; }
 }
 
-/* ---- Contact Page ---- */
+/* ---- Contact Page — Order Form ---- */
 
-.contact__heading {
+#contact .page__inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  min-height: 0;
+  max-width: none;
+}
+
+/* Order form slip — cream paper card, positioned in desk empty space */
+.order-form {
+  position: relative;
+  max-width: 480px;
+  width: 42%;
+  background: #f5f0e6;
+  border: 1px solid #8a7a60;
+  padding: 2rem 2.2rem;
+  margin-top: 2%;
+  transform: rotate(-0.7deg);
+  box-shadow:
+    0 2px 16px rgba(0, 0, 0, 0.45),
+    4px 4px 0 0 #e0d8c8,
+    5px 5px 0 0 #8a7a60;
+}
+
+/* Header area */
+.order-form__header {
+  text-align: center;
+  margin-bottom: 0;
+  position: relative;
+}
+
+.order-form__title {
   font-family: var(--font-serif);
-  color: var(--color-accent);
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
+  font-size: clamp(1rem, 1.8vw, 1.5rem);
   font-weight: 700;
+  color: #2a1e10;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin: 0 0 0.2rem;
 }
 
-.contact__form {
-  max-width: 500px;
-}
-
-.contact__field {
-  margin-bottom: 1.25rem;
-}
-
-.contact__label {
-  display: block;
-  color: var(--color-text);
-  opacity: 0.7;
-  font-size: 0.85rem;
-  margin-bottom: 0.4rem;
+.order-form__subtitle {
   font-family: var(--font-serif);
+  font-size: clamp(0.7rem, 1.1vw, 0.9rem);
+  color: #6b5a40;
+  font-weight: 400;
+  margin: 0;
 }
 
-.contact__input,
-.contact__select,
-.contact__textarea {
+.order-form__form-number {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.65rem;
+  line-height: 1.3;
+  text-align: left;
+  color: #8a7a60;
+}
+
+/* Dashed rule */
+.order-form__rule {
+  border: none;
+  border-bottom: 1px dashed #8a7a60;
+  margin: 0.8rem 0 1rem;
+}
+
+/* Row layout */
+.order-form__row {
+  margin-bottom: 0.9rem;
+}
+
+.order-form__row--two-col {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.order-form__row--two-col .order-form__field {
+  flex: 1;
+}
+
+/* Field */
+.order-form__field {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-form__label {
+  font-family: var(--font-serif);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #5a4a30;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.15rem;
+}
+
+/* Underline-style inputs */
+.order-form__input,
+.order-form__select {
   width: 100%;
-  background: rgba(36, 26, 14, 0.8);
-  border: 1px solid rgba(200, 144, 42, 0.3);
-  border-radius: 3px;
-  color: var(--color-text);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #8a7a60;
+  border-radius: 0;
+  color: #2a1e10;
   font-family: var(--font-serif);
-  font-size: 1rem;
-  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  padding: 0.35rem 0.25rem;
   outline: none;
   -webkit-appearance: none;
   appearance: none;
   box-sizing: border-box;
-  transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
+  transition: border-color 0.2s;
 }
 
-.contact__input:focus,
-.contact__select:focus,
-.contact__textarea:focus {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 2px rgba(200, 144, 42, 0.15);
+.order-form__input:focus,
+.order-form__select:focus {
+  border-bottom-color: #2a1e10;
 }
 
-/* Custom dropdown arrow — small downward chevron in accent color */
-.contact__select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c8902a' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  background-position: right 1rem center;
+/* Custom dropdown chevron */
+.order-form__select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a4a30' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-position: right 0.25rem center;
   background-repeat: no-repeat;
-  padding-right: 2.5rem;
+  padding-right: 1.5rem;
   cursor: pointer;
 }
 
-/* Style native select options (limited browser support, best effort) */
-.contact__select option {
-  background: #241a0e;
-  color: var(--color-text);
+.order-form__select option {
+  background: #f5f0e6;
+  color: #2a1e10;
 }
 
-.contact__textarea {
-  resize: vertical;
-  min-height: 120px;
+/* Textarea — boxed notes area */
+.order-form__textarea {
+  width: 100%;
+  background: transparent;
+  border: 1px solid #8a7a60;
+  border-radius: 0;
+  color: #2a1e10;
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  padding: 0.4rem 0.5rem;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+  resize: none;
+  min-height: 70px;
+  transition: border-color 0.2s;
+}
+
+.order-form__textarea:focus {
+  border-color: #2a1e10;
+}
+
+/* Footer */
+.order-form__footer {
+  margin-top: 0.3rem;
+}
+
+.order-form__fine-print {
+  font-family: var(--font-serif);
+  font-size: 0.65rem;
+  font-style: italic;
+  color: #8a7a60;
+  margin: 0 0 0.6rem;
 }
 
 .contact__error {
-  color: #cc4444;
-  font-size: 0.9rem;
+  color: #993333;
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
   min-height: 1.2em;
   margin-bottom: 0.5rem;
 }
 
-.contact__submit {
+/* Submit button */
+.order-form__submit {
   width: 100%;
-  background: rgba(200, 144, 42, 0.15);
-  border: 1px solid var(--color-accent);
-  color: var(--color-accent);
-  padding: 0.75rem;
+  background: #2a1e10;
+  border: none;
+  color: #f5f0e6;
+  padding: 0.6rem;
   font-family: var(--font-serif);
-  font-size: 1.05rem;
-  border-radius: 3px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   cursor: pointer;
-  transition: background var(--duration-fast);
+  transition: background 0.2s;
 }
 
-.contact__submit:hover {
-  background: rgba(200, 144, 42, 0.3);
+.order-form__submit:hover {
+  background: #3d2e1c;
 }
 
-.contact__submit:disabled {
+.order-form__submit:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
+/* RECEIVED stamp */
+.order-form__stamp {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-15deg) scale(2);
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #8b2020;
+  border: 3px solid #8b2020;
+  border-radius: 4px;
+  padding: 0.3rem 1.2rem;
+  opacity: 0;
+  pointer-events: none;
+  display: none;
+}
+
+/* Success message — shown over desk after form fades */
 .contact__success {
-  max-width: 500px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 400px;
+  width: 80%;
+  text-align: center;
 }
 
 .contact__success-text {
-  color: var(--color-accent);
+  color: #f5f0e6;
   font-family: var(--font-serif);
-  font-size: 1.2rem;
-  text-align: center;
-  padding-top: 3rem;
+  font-size: 1.15rem;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* ---- Contact mobile ---- */
+@media (max-width: 768px) {
+  #contact {
+    background-position: center top;
+  }
+
+  .order-form {
+    width: 85%;
+    max-width: none;
+    padding: 1.4rem;
+    transform: none;
+    margin-top: 5%;
+  }
+
+  .order-form__row--two-col {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .order-form__row--two-col .order-form__field {
+    margin-bottom: 0.9rem;
+  }
+
+  .order-form__form-number {
+    position: static;
+    display: block;
+    text-align: center;
+    margin-top: 0.3rem;
+  }
+
+  .order-form__stamp {
+    font-size: 1.8rem;
+  }
+}
+
+/* Tall/narrow viewports — tighten further so form doesn't overflow */
+@media (max-height: 700px) {
+  .order-form {
+    padding: 1.2rem 1.5rem;
+  }
+
+  .order-form__row {
+    margin-bottom: 0.6rem;
+  }
+
+  .order-form__rule {
+    margin: 0.5rem 0 0.7rem;
+  }
+
+  .order-form__textarea {
+    min-height: 50px;
+  }
 }
