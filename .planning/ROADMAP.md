@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Entrance and Darkroom Scene** - Building exterior walk-in, darkroom clothesline with ambient lighting, and in-world navigation (completed 2026-03-01)
 - [x] **Phase 3: Transition Sequences** - Hand-grab animation and camera pull-in from clothesline to filmstrip (completed 2026-03-01)
 - [ ] **Phase 4: Filmstrip Gallery** - Horizontal filmstrip with all five genres, photo enlarge-in-place, and inline video
-- [ ] **Phase 5: Pages and Performance** - About, Contact (Formspree), and full performance/mobile validation pass
+- [x] **Phase 5: Pages and Performance** - About, Contact (Formspree), and full performance/mobile validation pass (completed 2026-03-02)
 
 ## Phase Details
 
@@ -83,7 +83,7 @@ Plans:
   2. The Contact form collects name, email, project type, and message; submitting the form delivers the data to email via Formspree without any server-side code; a success/error state is shown to the user
   3. WebPageTest or Lighthouse shows a load time under 3 seconds on a broadband connection; filmstrip images for genres not yet viewed are not in the network log at page load
   4. Clothesline thumbnail images are visible immediately on the darkroom scene without waiting for a lazy-load trigger
-**Plans:** 1/2 plans executed
+**Plans:** 2/2 plans complete
 Plans:
 - [ ] 05-01-PLAN.md — About and Contact pages with fade transitions and Formspree form
 - [ ] 05-02-PLAN.md — Performance optimization: preload hints, lazy loading verification, visual checkpoint
@@ -99,4 +99,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 2. Entrance and Darkroom Scene | 2/2 | Complete   | 2026-03-01 |
 | 3. Transition Sequences | 1/1 | Complete   | 2026-03-01 |
 | 4. Filmstrip Gallery | 0/? | Not started | - |
-| 5. Pages and Performance | 1/2 | In Progress|  |
+| 5. Pages and Performance | 2/2 | Complete   | 2026-03-02 |

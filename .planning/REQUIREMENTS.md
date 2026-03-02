@@ -49,10 +49,10 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Performance
 
-- [ ] **PERF-01**: Site loads in under 3 seconds on broadband
+- [x] **PERF-01**: Site loads in under 3 seconds on broadband
 - [ ] **PERF-02**: Images served as optimized WebP with JPEG fallback
-- [ ] **PERF-03**: Lazy loading for filmstrip images (only load current genre)
-- [ ] **PERF-04**: Clothesline thumbnail images preloaded on initial page load
+- [x] **PERF-03**: Lazy loading for filmstrip images (only load current genre)
+- [x] **PERF-04**: Clothesline thumbnail images preloaded on initial page load
 
 ### Infrastructure
 
@@ -134,10 +134,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | PAGE-02 | Phase 5 | Complete |
 | PAGE-03 | Phase 5 | Complete |
 | PAGE-04 | Phase 5 | Complete |
-| PERF-01 | Phase 5 | Pending |
+| PERF-01 | Phase 5 | Complete |
 | PERF-02 | Phase 5 | Pending |
-| PERF-03 | Phase 5 | Pending |
-| PERF-04 | Phase 5 | Pending |
+| PERF-03 | Phase 5 | Complete |
+| PERF-04 | Phase 5 | Complete |
 
 **Coverage:**
 - v1 requirements: 37 total (note: original count of 32 was a miscounting — actual count from requirements list is 37)

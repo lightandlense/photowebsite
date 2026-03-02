@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in_progress
-last_updated: "2026-03-01T23:50:00Z"
+last_updated: "2026-03-02T02:55:00Z"
 progress:
   total_phases: 5
-  completed_phases: 4
+  completed_phases: 5
   total_plans: 8
-  completed_plans: 6
+  completed_plans: 8
 ---
 
 # Project State
@@ -22,12 +22,12 @@ See: .planning/PROJECT.md (updated 2026-02-28)
 
 ## Current Position
 
-Phase: 5 of 5 (Pages and Performance) — IN PROGRESS
-Plan: 1 of 2 in phase 5 — COMPLETE
-Status: Phase 5 plan 1 complete, ready for plan 2
-Last activity: 2026-03-01 — Plan 05-01 complete
+Phase: 5 of 5 (Pages and Performance) — COMPLETE
+Plan: 2 of 2 in phase 5 — COMPLETE
+Status: All phases complete — portfolio feature-complete
+Last activity: 2026-03-02 — Plan 05-02 complete
 
-Progress: [████████░░] 75%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
@@ -44,7 +44,7 @@ Progress: [████████░░] 75%
 | 2 — Entrance and Darkroom Scene | 2 | 5 min | 2.5 min |
 | 3 — Transition Sequences | 1 | 2 min | 2 min |
 | 4 — Filmstrip Gallery | 1 | 2 min | 2 min |
-| 5 — Pages and Performance | 1 | 2 min | 2 min |
+| 5 — Pages and Performance | 2 | 14 min | 7 min |
 
 **Recent Trend:**
 - Last 5 plans: 2 min, 2 min, 3 min, 2 min, 2 min
@@ -87,6 +87,9 @@ Recent decisions affecting current work:
 - 05-01: navigateToPage called from darkroom.js (not router) — page transitions are GSAP fades, not raw navigateTo
 - 05-01: About CTA uses <button> not <a> — avoids router link interception conflict on same-origin anchors
 - 05-01: Contact form reset happens inside navigateFromPage — ensures clean state on every visit
+- 05-02: PERF-02 (WebP) explicitly deferred — no build step, requires manual image processing; pattern documented in 05-RESEARCH.md
+- 05-02: Preload hrefs use root-relative /images/... paths; inline styles use relative images/... — both resolve identically, preload must be root-relative for resource key matching
+- 05-02: fetchpriority=high on fashion image only (leftmost/LCP candidate) — avoid priority contention on remaining 4 preloads
 
 ### Pending Todos
 
@@ -98,6 +101,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-01
-Stopped at: Completed 05-01-PLAN.md — About/Contact page sections, pages.css, pages.js transitions, Formspree form
+Last session: 2026-03-02
+Stopped at: Completed 05-02-PLAN.md — preload hints, lazy loading confirmation, full site human verification
 Resume file: None
