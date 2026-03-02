@@ -36,7 +36,7 @@ export function navigateToPage(pageId) {
 
   tl.to(darkroomEl, { opacity: 0, duration: 0.5, ease: 'power2.in' }, 0)
     .set(darkroomEl, { display: 'none' }, 0.5)
-    .set(pageEl, { display: 'flex', opacity: 0 }, 0.5)
+    .set(pageEl, { display: 'block', opacity: 0 }, 0.5)
     .to(pageEl, { opacity: 1, duration: 0.5, ease: 'power2.out' }, 0.5);
 }
 
@@ -159,7 +159,7 @@ export function initPages() {
       });
 
       tl.to(aboutEl, { opacity: 0, duration: 0.3, ease: 'power2.in' }, 0)
-        .set(contactEl, { display: 'flex', opacity: 0 }, 0.3)
+        .set(contactEl, { display: 'block', opacity: 0 }, 0.3)
         .to(contactEl, { opacity: 1, duration: 0.4, ease: 'power2.out' }, 0.3);
     });
   }

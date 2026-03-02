@@ -184,7 +184,7 @@
   width: 160px;
   height: 210px;
   border: 6px solid rgba(245, 240, 230, 0.85);
-  border-bottom-width: 22px;
+  border-bottom-width: 36px;
   border-radius: 1px;
   box-shadow:
     0 4px 12px rgba(0, 0, 0, 0.6),
@@ -218,17 +218,22 @@
 
 .clothesline__genre-label {
   font-family: var(--font-serif);
-  font-size: 0.6rem;
-  color: #3a3530;
-  opacity: 0.8;
+  font-size: 1.2rem;
+  color: #000000;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   position: absolute;
-  bottom: -17px;
+  bottom: -30px;
   left: 0;
   right: 0;
   text-align: center;
+  white-space: nowrap;
   z-index: 1;
+}
+
+/* Shrink longer labels to fit on one line */
+.clothesline__genre-label--long {
+  font-size: 0.85rem;
 }
 
 /* ============================================================
@@ -259,8 +264,8 @@
   .clothesline--bottom { top: 50%; }
 
   .clothesline__genre-label {
-    font-size: 0.5rem;
-    bottom: -12px;
+    font-size: 0.6rem;
+    bottom: -14px;
   }
 
   .clothesline__pin {

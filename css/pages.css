@@ -9,6 +9,15 @@
 
 /* ---- Shared Page Layout ---- */
 
+/* Override .scene's fixed height + overflow:hidden so pages can scroll */
+#about,
+#contact {
+  height: auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-y: auto;
+}
+
 .page__inner {
   max-width: 700px;
   margin: 0 auto;
@@ -42,7 +51,8 @@
 
 /* ---- About Page ---- */
 
-.about__content {
+/* Intro: portrait + bio side by side, equal width */
+.about__intro {
   display: flex;
   gap: 2rem;
   align-items: flex-start;
@@ -50,15 +60,21 @@
 }
 
 .about__portrait {
-  flex-shrink: 0;
+  flex: 1 1 0;
+  min-width: 0;
 }
 
-.about__portrait-placeholder {
-  width: 250px;
-  height: 320px;
-  background: rgba(36, 26, 14, 0.6);
+.about__portrait-img {
+  width: 100%;
+  height: auto;
   border: 1px solid rgba(200, 144, 42, 0.2);
   border-radius: 3px;
+  display: block;
+}
+
+.about__text {
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .about__heading {
@@ -76,12 +92,75 @@
   font-size: 1.05rem;
 }
 
-.about__footer {
-  margin-top: auto;
+/* Credential sections */
+.about__section {
+  margin-top: 2.5rem;
   padding-top: 2rem;
+  border-top: 1px solid rgba(200, 144, 42, 0.15);
+}
+
+.about__section-heading {
+  font-family: var(--font-serif);
+  color: var(--color-accent);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.03em;
+}
+
+.about__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: var(--color-text);
+  line-height: 2;
+  font-size: 0.95rem;
+}
+
+.about__list li {
+  opacity: 0.85;
+}
+
+.about__list a {
+  color: var(--color-text);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(200, 144, 42, 0.3);
+  transition: color var(--duration-fast), border-color var(--duration-fast);
+}
+
+.about__list a:hover {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+/* Two-column layout for longer lists */
+.about__list--two-col {
+  columns: 2;
+  column-gap: 2rem;
+}
+
+/* Clients displayed inline with separators */
+.about__list--clients {
   display: flex;
-  gap: 2rem;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  line-height: 1.8;
+}
+
+.about__list--clients li {
+  white-space: nowrap;
+}
+
+/* Footer */
+.about__footer {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(200, 144, 42, 0.15);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
   align-items: center;
+  padding-bottom: 3rem;
 }
 
 .about__cta {
@@ -99,6 +178,25 @@
 
 .about__cta:hover {
   background: rgba(200, 144, 42, 0.3);
+}
+
+.about__contact-info {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.about__contact-link {
+  color: var(--color-text);
+  opacity: 0.6;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: opacity var(--duration-fast), color var(--duration-fast);
+}
+
+a.about__contact-link:hover {
+  opacity: 1;
+  color: var(--color-accent);
 }
 
 .about__socials {
@@ -119,16 +217,29 @@
   color: var(--color-accent);
 }
 
-/* Mobile — stack portrait above text */
+/* Mobile */
 @media (max-width: 768px) {
-  .about__content {
+  .about__intro {
     flex-direction: column;
     align-items: center;
   }
 
-  .about__portrait-placeholder {
+  .about__portrait-img {
     width: 200px;
-    height: 260px;
+  }
+
+  .about__list--two-col {
+    columns: 1;
+  }
+
+  .about__footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .about__contact-info {
+    flex-direction: column;
+    gap: 0.5rem;
   }
 }
 

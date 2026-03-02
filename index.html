@@ -25,7 +25,7 @@
   <link rel="preload" as="image" href="/images/beauty/DSC5447-Edit-min.jpg">
   <link rel="preload" as="image" href="/images/light-painting/Russell-Klimas-Lightpainting-min.jpg">
   <link rel="preload" as="image" href="/images/drone/Balance-Steamboat-Garden-of-the-Gods-drone-light-painting.jpg">
-  <link rel="preload" as="image" href="/images/gels/DSC7601-Edit.jpg">
+  <link rel="preload" as="image" href="/images/gels/ricky yellow.jpg">
 </head>
 <body>
 
@@ -65,16 +65,16 @@
             <span class="clothesline__genre-label clothesline__genre-label--long">Light Painting</span>
           </div>
         </figure>
+        <figure class="clothesline__photo" data-genre="gels">
+          <div class="clothesline__pin"></div>
+          <div class="clothesline__image" style="background: url('images/gels/ricky yellow.jpg') center/cover;">
+            <span class="clothesline__genre-label">Gels</span>
+          </div>
+        </figure>
         <figure class="clothesline__photo" data-genre="drone">
           <div class="clothesline__pin"></div>
           <div class="clothesline__image" style="background: url('images/drone/Balance-Steamboat-Garden-of-the-Gods-drone-light-painting.jpg') center/cover;">
             <span class="clothesline__genre-label">Drone</span>
-          </div>
-        </figure>
-        <figure class="clothesline__photo" data-genre="gels">
-          <div class="clothesline__pin"></div>
-          <div class="clothesline__image" style="background: url('images/gels/DSC7601-Edit.jpg') center/cover;">
-            <span class="clothesline__genre-label">Gels</span>
           </div>
         </figure>
       </div>
@@ -88,13 +88,13 @@
         </figure>
         <figure class="clothesline__photo" data-nav="about" role="button" tabindex="0" aria-label="Navigate to About page">
           <div class="clothesline__pin"></div>
-          <div class="clothesline__image" style="background: linear-gradient(180deg, #2a2018 0%, #5a4430 25%, #6B5030 45%, #3A2A1A 70%, #1a1410 100%);">
+          <div class="clothesline__image" style="background: url('images/profilepic.jpg') center/cover;">
             <span class="clothesline__genre-label">About Me</span>
           </div>
         </figure>
         <figure class="clothesline__photo" data-nav="contact" role="button" tabindex="0" aria-label="Navigate to Contact page">
           <div class="clothesline__pin"></div>
-          <div class="clothesline__image" style="background: linear-gradient(180deg, #0e1a28 0%, #1A2A3A 25%, #405868 45%, #305060 70%, #0a1420 100%);">
+          <div class="clothesline__image" style="background: url('images/gels/leah sil.jpg') center/cover;">
             <span class="clothesline__genre-label">Contact</span>
           </div>
         </figure>
@@ -116,24 +116,100 @@
     <section id="about" class="scene" style="display: none;">
       <div class="page__inner">
         <button class="page__back" aria-label="Return to darkroom">&#8592; Back</button>
-        <div class="about__content">
+
+        <!-- Intro: Portrait + Bio -->
+        <div class="about__intro">
           <div class="about__portrait">
-            <!-- TODO: Replace with real portrait photo -->
-            <div class="about__portrait-placeholder"></div>
+            <img src="/images/profilepic.jpg" alt="Russell Klimas headshot" class="about__portrait-img">
           </div>
           <div class="about__text">
-            <h1 class="about__heading">About Me</h1>
-            <!-- TODO: Replace with real bio text -->
-            <p class="about__bio">Placeholder bio text. A photographer who sees light as a language and the darkroom as a sanctuary. Every frame tells a story of patience, precision, and the quiet magic of captured moments.</p>
-            <p class="about__bio">With years behind the lens — from high-fashion editorials to experimental light painting — each genre is a different conversation with light.</p>
+            <h1 class="about__heading">Russell Klimas</h1>
+            <p class="about__bio">I discovered light painting photography a few years ago and it quickly became my primary focus. By day I work as a web developer, but after sunset the real work begins — long exposures, strategic planning, and no photo manipulation software. What you see in my images is what happened in front of the camera.</p>
+            <p class="about__bio">In late 2017, I was diagnosed with testicular cancer. During treatment, light painting became my source of hope and inspiration. After achieving remission — with the support of incredible medical professionals and loved ones — I came out the other side more committed than ever to pursuing this craft full-time.</p>
           </div>
         </div>
+
+        <!-- Clients -->
+        <div class="about__section">
+          <h2 class="about__section-heading">Clients</h2>
+          <ul class="about__list about__list--clients">
+            <li>Adobe</li>
+            <li>The Olympics</li>
+            <li>Government of Saudi Arabia</li>
+            <li>Mrotek</li>
+            <li>PUBG</li>
+            <li>Nanlite</li>
+            <li>Lumecube</li>
+            <li>Ants on a Melon</li>
+          </ul>
+        </div>
+
+        <!-- Accolades -->
+        <div class="about__section">
+          <h2 class="about__section-heading">Accolades</h2>
+          <ul class="about__list">
+            <li><a href="https://www.guinnessworldrecords.com/world-records/648012-largest-light-drawing-by-uav" target="_blank" rel="noopener">Guinness World Record</a> — World's Largest Light Drawing by UAV</li>
+            <li>Insta360 Young Gun Award</li>
+            <li>Lindsay Adler's Printique Critique Creative Portraits Contest with Adorama</li>
+            <li>Director's Choice — After Dark (<a href="https://www.praxisphotocenter.org/" target="_blank" rel="noopener">Praxis Photo Arts Center</a>)</li>
+          </ul>
+        </div>
+
+        <!-- Speaking Engagements -->
+        <div class="about__section">
+          <h2 class="about__section-heading">Speaking</h2>
+          <ul class="about__list about__list--two-col">
+            <li>WPPI 2025</li>
+            <li>The Peculiar Collective 2025</li>
+            <li>WPPI 2024</li>
+            <li>The Peculiar Collective 2024</li>
+            <li>WPPI 2023</li>
+            <li>ImagingUSA 2023</li>
+            <li>PPC of Colorado 2022</li>
+            <li>WPPI 2022</li>
+            <li>PPC of Colorado Springs 2020–21</li>
+            <li><a href="https://youtu.be/H60uArsYu48" target="_blank" rel="noopener">TEDxColorado Springs 2019</a></li>
+          </ul>
+        </div>
+
+        <!-- Photo Press -->
+        <div class="about__section">
+          <h2 class="about__section-heading">Press</h2>
+          <ul class="about__list about__list--two-col about__list--press">
+            <li><a href="https://www.bbc.co.uk/newsround/51208840" target="_blank" rel="noopener">BBC</a></li>
+            <li><a href="https://www.popularmechanics.com/space/a30416610/baby-yoda-sky-painting/" target="_blank" rel="noopener">Popular Mechanics</a></li>
+            <li><a href="https://www.dailymail.co.uk/sciencetech/article-6694741/Vincent-van-DRONE.html" target="_blank" rel="noopener">DailyMail UK</a></li>
+            <li><a href="https://www.telegraph.co.uk/news/2019/02/12/pictures-day-12-february-2019/" target="_blank" rel="noopener">The Telegraph</a></li>
+            <li><a href="https://petapixel.com/2020/05/28/using-a-drone-to-create-stop-motion-animations-in-the-sky/" target="_blank" rel="noopener">Petapixel</a></li>
+            <li><a href="https://www.diyphotography.net/how-i-create-2d-animation-with-drone-light-painting/" target="_blank" rel="noopener">DIY Photography</a></li>
+            <li><a href="https://fstoppers.com/drone/light-artist-used-drone-paint-stop-motions-sky-490033" target="_blank" rel="noopener">F Stoppers</a></li>
+            <li><a href="https://mymodernmet.com/russell-klimas-baby-yoda-light-painting/" target="_blank" rel="noopener">My Modern Met</a></li>
+            <li><a href="https://www.fox21news.com/digital-now/drone-light-paintings-are-taking-off/" target="_blank" rel="noopener">Fox 21 News</a></li>
+            <li><a href="http://voyagedenver.com/interview/meet-russell-klimas-light-lense-colorado-springs/" target="_blank" rel="noopener">Voyage Denver</a></li>
+            <li><a href="https://www.upworthy.com/ai-art-shows-fashion-over-100-years" target="_blank" rel="noopener">Upworthy</a></li>
+            <li><a href="https://www.newsbreak.com/news/2940682219538-100-years-in-30-seconds-ai-technology-shows-how-women-s-fashion-has-transformed" target="_blank" rel="noopener">News Break</a></li>
+            <li><a href="https://issuu.com/jennifercostello2175/docs/binder1_jnhe/22" target="_blank" rel="noopener">Jeneration Magazine</a></li>
+            <li><a href="https://fashionterest.com/ai-fashion-time-warp-100-years-in-30-secs/" target="_blank" rel="noopener">Fashion Interest</a></li>
+            <li><a href="https://www.dronewatch.nl/2020/02/08/kijken-dronepiloot-tekent-baby-yoda-op-sterrenhemel/" target="_blank" rel="noopener">Drone Watch</a></li>
+            <li><a href="https://dronedj.com/2019/02/04/drone-light-painting-waypoints-litchi/" target="_blank" rel="noopener">DroneDJ</a></li>
+            <li><a href="https://youtu.be/4-6BQ6Tmcso?t=103" target="_blank" rel="noopener">Tokudane!</a></li>
+            <li><a href="https://www.techeblog.com/photographer-uses-drones-to-capture-these-mesmerizing-top-down-light-painting-portraits/" target="_blank" rel="noopener">Techeblog</a></li>
+            <li><a href="https://lightpaintingphotography.com/light-painting-photography/drone-light-painting-tutorial-by-russell-klimas/" target="_blank" rel="noopener">Light Painting Photography</a></li>
+            <li><a href="https://www.platypod.com/blogs/blog/2020-4-28-light-painting-with-russell-kilmas" target="_blank" rel="noopener">Platypod</a></li>
+          </ul>
+        </div>
+
+        <!-- Footer: CTA + Socials + Contact -->
         <div class="about__footer">
           <button class="about__cta">Get in Touch</button>
+          <div class="about__contact-info">
+            <a href="mailto:lightandlense@gmail.com" class="about__contact-link">lightandlense@gmail.com</a>
+            <span class="about__contact-link">(719) 522-3331</span>
+          </div>
           <div class="about__socials">
-            <!-- TODO: Replace # with real social URLs -->
-            <a href="#" class="about__social-link" target="_blank" rel="noopener">Instagram</a>
-            <a href="#" class="about__social-link" target="_blank" rel="noopener">Behance</a>
+            <a href="https://www.instagram.com/lightnlense/" class="about__social-link" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.behance.net/lightandlense" class="about__social-link" target="_blank" rel="noopener">Behance</a>
+            <a href="https://twitter.com/lenselight" class="about__social-link" target="_blank" rel="noopener">Twitter</a>
           </div>
         </div>
       </div>
@@ -143,7 +219,7 @@
       <div class="page__inner">
         <button class="page__back" aria-label="Return to darkroom">&#8592; Back</button>
         <h1 class="contact__heading">Contact</h1>
-        <form id="contact-form" class="contact__form" action="https://formspree.io/f/PLACEHOLDER" method="POST">
+        <form id="contact-form" class="contact__form" action="https://formspree.io/f/mwvnjdla" method="POST">
           <div class="contact__field">
             <label for="contact-name" class="contact__label">Name</label>
             <input type="text" id="contact-name" name="name" class="contact__input" required autocomplete="name">
