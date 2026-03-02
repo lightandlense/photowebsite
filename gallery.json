@@ -80,7 +80,7 @@
       "id": "drone",
       "label": "Drone",
       "folder": "images/drone",
-      "clotheslineIndex": 3,
+      "clotheslineIndex": 4,
       "photoCount": 14,
       "photos": [
         "Balance-Steamboat-Garden-of-the-Gods-drone-light-painting.jpg",
@@ -103,11 +103,18 @@
       "id": "gels",
       "label": "Gels",
       "folder": "images/gels",
-      "clotheslineIndex": 4,
-      "photoCount": 13,
+      "clotheslineIndex": 3,
+      "photoCount": 26,
       "photos": [
+        "9G0A3405.jpg",
+        "9G0A3545.jpg",
+        "9G0A3719.jpg",
+        "9G0A3730.jpg",
+        "9G0A3736.jpg",
+        "9G0A3742.jpg",
+        "9G0A3841.jpg",
+        "9G0A4025-Enhanced-NR-Edit.jpg",
         "DSC6127-Edit.jpg",
-        "DSC6179.jpg",
         "DSC7453-Edit.jpg",
         "DSC7483.jpg",
         "DSC7501-Edit.jpg",
@@ -116,9 +123,15 @@
         "DSC7606-Edit.jpg",
         "DSC7700-min.jpg",
         "DSC7722-Edit-min.jpg",
+        "Russell Klimas Silhouette.jpg",
+        "_DSC5498.jpg",
+        "_DSC5581-Edit.jpg",
+        "_DSC5624-Edit.jpg",
         "fashion-photography-gels-1.jpg",
-        "fashion-photography-gels-2.jpg",
-        "fashion-photography-gels-3.jpg"
+        "ricky yellow.jpg",
+        "fashion-photography-gels-3.jpg",
+        "leah red orange.jpg",
+        "leah sil.jpg"
       ]
     }
   ]
