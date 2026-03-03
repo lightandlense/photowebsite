@@ -34,6 +34,10 @@ function showDarkroom() {
   });
 }
 
+// Preload the open door image so swap is instant
+const openDoorImg = new Image();
+openDoorImg.src = '/images/entrance/building door open.png';
+
 export function initEntrance() {
   const door = document.getElementById('door');
   if (!door) {
@@ -50,32 +54,28 @@ export function initEntrance() {
     if (e.key === 'Enter') door.click();
   });
 
-  // Walk-in timeline
+  // Walk-in: swap to open door image, pause, then fade to darkness
   const darkness = document.querySelector('.scene__overlay--darkness');
-
-  const walkIn = gsap.timeline({
-    paused: true,
-    defaults: { ease: 'power2.inOut' },
-    onComplete: () => {
-      store.set({ transitionInProgress: false });
-      showDarkroom();
-    }
-  });
-
-  walkIn
-    .to('[data-layer="building"]', { scale: 1.15,           duration: 1.5 }, 0)
-    .to('[data-layer="door"]',     { scale: 1.8,            duration: 1.5 }, 0)
-    .to('.entrance__step-inside',  { opacity: 0,            duration: 0.3 }, 0);
-
-  if (darkness) {
-    walkIn.to(darkness, { opacity: 1, duration: 0.7 }, 1.2);
-    walkIn.to(darkness, { opacity: 1, duration: 0.4 }, 1.9);
-  }
+  const building = document.querySelector('[data-layer="building"]');
 
   door.addEventListener('click', () => {
     if (store.get().transitionInProgress) return;
     store.set({ transitionInProgress: true });
-    walkIn.play();
+
+    // Swap building image to open door
+    building.style.backgroundImage = "url('/images/entrance/building door open.png')";
+
+    const walkIn = gsap.timeline({
+      defaults: { ease: 'power2.inOut' },
+      onComplete: () => {
+        store.set({ transitionInProgress: false });
+        showDarkroom();
+      }
+    });
+
+    walkIn
+      .to('.entrance__step-inside', { opacity: 0, duration: 0.3 }, 0)
+      .to(darkness, { opacity: 1, duration: 0.8 }, 1.0);
   });
 
   console.log('[entrance] Entrance scene initialised');
